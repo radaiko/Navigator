@@ -5,7 +5,6 @@
     <Nullable>enable</Nullable>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
-    <ApplicationIcon>Assets\navigtor.ico</ApplicationIcon>
   </PropertyGroup>
   
   <!-- Platform-specific icon configurations -->
