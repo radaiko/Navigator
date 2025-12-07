@@ -9,19 +9,19 @@
   
   <!-- Platform-specific icon configurations -->
   <ItemGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
-    <ApplicationIcon Include="Assets\navigtor.ico" />
+    <ApplicationIcon Include="Assets\navigator.ico" />
   </ItemGroup>
   
   <ItemGroup Condition="$([MSBuild]::IsOSPlatform('OSX'))">
-    <None Include="Assets\navigtor.icns">
-      <Link>navigtor.icns</Link>
+    <None Include="Assets\navigator.icns">
+      <Link>navigator.icns</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   
   <ItemGroup Condition="$([MSBuild]::IsOSPlatform('Linux'))">
-    <None Include="Assets\navigtor-256.png">
-      <Link>navigtor.png</Link>
+    <None Include="Assets\navigator-256.png">
+      <Link>navigator.png</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
