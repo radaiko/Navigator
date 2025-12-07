@@ -6,7 +6,7 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Navigtor.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
-        Icon="/Assets/navigtor.ico"
+        Icon="/Assets/navigator.ico"
         Title="Navigtor">
 
     <Design.DataContext>
