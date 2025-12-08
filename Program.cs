@@ -1,7 +1,7 @@
 ﻿using Avalonia;
 using System;
 
-namespace Navigtor;
+namespace Navigator;
 
 sealed class Program
 {

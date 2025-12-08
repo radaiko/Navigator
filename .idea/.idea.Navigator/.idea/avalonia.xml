@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="App.axaml" value="Navigator.csproj" />
+        <entry key="Controls/FileSystemItemDataGrid.axaml" value="Navigator.csproj" />
+        <entry key="Controls/FolderTreeView.axaml" value="Navigator.csproj" />
+        <entry key="Controls/ItemContainer.axaml" value="Navigator.csproj" />
+        <entry key="Controls/TableView.axaml" value="Navigator.csproj" />
+        <entry key="Controls/TreeView.axaml" value="Navigator.csproj" />
+        <entry key="Views/FileWindowTabView.axaml" value="Navigator.csproj" />
+        <entry key="Views/MainWindow.axaml" value="Navigator.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

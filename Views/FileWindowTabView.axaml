@@ -1,0 +1,31 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:Navigator.Controls"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+             x:Class="Navigator.Views.FileWindowTabView">
+
+    <Border Padding="10">
+        <Grid ColumnDefinitions="250,*">
+            <!-- Left Panel: TreeView for Folder Navigation -->
+            <Border Grid.Column="0"
+                    BorderBrush="{DynamicResource SystemControlBorderBaseMediumColor}"
+                    BorderThickness="1"
+                    CornerRadius="4"
+                    Margin="0,0,10,0">
+                <controls:TreeView ItemsSource="{Binding TreeViewItems}" />
+            </Border>
+
+            <!-- Right Panel: TableView for File Browsing -->
+            <Border Grid.Column="1"
+                    BorderBrush="{DynamicResource SystemControlBorderBaseMediumColor}"
+                    BorderThickness="1"
+                    CornerRadius="4">
+                <controls:TableView x:Name="FileTableView" />
+            </Border>
+        </Grid>
+    </Border>
+
+</UserControl>
+
