@@ -8,48 +8,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e66eecff-a851-45f0-aa6b-c7f616e7c1e5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.editorconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Navigator/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Navigator/.idea/avalonia.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Navigator/.idea/copilot.data.migration.agent.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Navigator/.idea/copilot.data.migration.ask.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Navigator/.idea/copilot.data.migration.ask2agent.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Navigator/.idea/copilot.data.migration.edit.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Navigator/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Navigator/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Navigator/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Navigtor/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Controls/ItemContainer.axaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Controls/ItemContainer.axaml.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Controls/TableView.axaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Controls/TableView.axaml.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Controls/TreeView.axaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Controls/TreeView.axaml.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GlobalUsings.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Models/FileWindowTab.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Models/Nodes/BaseNode.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Models/Nodes/DirectoryNode.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Models/Nodes/FileNode.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Models/TabItem.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ViewModels/FileWindowTabViewModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Views/FileWindowTabView.axaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Views/FileWindowTabView.axaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Navigtor/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Navigtor/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Navigtor/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Navigtor/.idea/indexLayout.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Navigtor/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/App.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/App.axaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/App.axaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Navigtor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Navigator.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Navigtor.sln" beforeDir="false" afterPath="$PROJECT_DIR$/Navigator.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewLocator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ViewLocator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModels/MainWindowViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModels/MainWindowViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModels/ViewModelBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModels/ViewModelBase.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/MainWindow.axaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/MainWindow.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Views/MainWindow.axaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Navigtor/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Navigtor/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controls/TreeView.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controls/TreeView.axaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModels/FileWindowTabViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModels/FileWindowTabViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/FileWindowTabView.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/FileWindowTabView.axaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,7 +136,7 @@
       <updated>1765132899362</updated>
       <workItem from="1765132901003" duration="157000" />
       <workItem from="1765133138283" duration="137000" />
-      <workItem from="1765133295983" duration="21329000" />
+      <workItem from="1765133295983" duration="22165000" />
     </task>
     <task id="LOCAL-00001" summary="fix naming">
       <option name="closed" value="true" />
@@ -184,7 +146,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765133032701</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="TreeView half finished">
+      <option name="closed" value="true" />
+      <created>1765218012895</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1765218012895</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -195,7 +165,8 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="fix naming" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix naming" />
+    <MESSAGE value="TreeView half finished" />
+    <option name="LAST_COMMIT_MESSAGE" value="TreeView half finished" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -227,13 +198,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Controls/TreeView.axaml.cs</url>
-          <line>205</line>
+          <line>231</line>
           <properties documentPath="$PROJECT_DIR$/Controls/TreeView.axaml.cs" containingFunctionPresentation="Method 'Expander_PointerPressed'">
             <startOffsets>
-              <option value="7654" />
+              <option value="8695" />
             </startOffsets>
             <endOffsets>
-              <option value="7670" />
+              <option value="8711" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="10" />

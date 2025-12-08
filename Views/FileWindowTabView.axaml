@@ -14,7 +14,8 @@
                     BorderThickness="1"
                     CornerRadius="4"
                     Margin="0,0,10,0">
-                <controls:TreeView ItemsSource="{Binding TreeViewItems}" />
+                <controls:TreeView ItemsSource="{Binding TreeViewItems}"
+                                   SelectedNode="{Binding SelectedTreeNode, Mode=TwoWay}" />
             </Border>
 
             <!-- Right Panel: TableView for File Browsing -->

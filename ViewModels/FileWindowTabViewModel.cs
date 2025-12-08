@@ -16,7 +16,12 @@ public partial class FileWindowTabViewModel : ViewModelBase
     public FileWindowTabViewModel(FileWindowTab model)
     {
         TreeViewItems = model.RootFolders;
-        SelectedTreeNode?.PropertyChanged += (_, _) => UpdateMainViewPath(SelectedTreeNode);
+    }
+
+    partial void OnSelectedTreeNodeChanged(DirectoryNode? value)
+    {
+        Logger.Debug($"FileWindowTabViewModel.SelectedTreeNode changed to: {value?.Name ?? "null"}");
+        UpdateMainViewPath(value);
     }
 
     private void UpdateMainViewPath(DirectoryNode? node)

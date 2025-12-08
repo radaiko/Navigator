@@ -1,3 +1,4 @@
+using System;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
@@ -16,9 +17,23 @@ public partial class TreeView : UserControl {
         AvaloniaProperty.Register<TreeView, ObservableCollection<DirectoryNode>>(
             nameof(ItemsSource));
 
+    public static readonly StyledProperty<DirectoryNode?> SelectedNodeProperty =
+        AvaloniaProperty.Register<TreeView, DirectoryNode?>(
+            nameof(SelectedNode),
+            defaultValue: null,
+            defaultBindingMode: Avalonia.Data.BindingMode.TwoWay);
+
     public ObservableCollection<DirectoryNode> ItemsSource {
         get => GetValue(ItemsSourceProperty);
         set => SetValue(ItemsSourceProperty, value);
+    }
+
+    public DirectoryNode? SelectedNode {
+        get => GetValue(SelectedNodeProperty);
+        set {
+            Logger.Debug($"TreeView.SelectedNode setter called with value: {value?.Name ?? "null"}");
+            SetValue(SelectedNodeProperty, value);
+        }
     }
 
     public TreeView() {
@@ -86,6 +101,10 @@ public partial class TreeView : UserControl {
     private void AddTreeItem(DirectoryNode node, Panel parent, int indentLevel) {
         Logger.Debug($"AddTreeItem: {node.Name} (indent level: {indentLevel})");
         var treeItemControl = new TreeItemControl(node, indentLevel);
+        treeItemControl.NodeSelected += (selectedNode) => {
+            Logger.Debug($"Node selected: {selectedNode.Name}");
+            SelectedNode = selectedNode;
+        };
         _itemMap[node] = treeItemControl;
         parent.Children.Add(treeItemControl);
         Logger.Debug($"Tree item added to parent. Total items in map: {_itemMap.Count}");
@@ -104,6 +123,9 @@ public class TreeItemControl : StackPanel {
     private TextBlock? _nameText;
     private StackPanel? _childrenContainer;
     private bool _isExpanded;
+
+    // Event to notify parent TreeView of selection
+    public event Action<DirectoryNode>? NodeSelected;
 
     public TreeItemControl(DirectoryNode node, int indentLevel) {
         _node = node;
@@ -178,6 +200,10 @@ public class TreeItemControl : StackPanel {
         _expanderBorder.PointerPressed += Expander_PointerPressed;
         Logger.Debug($"Expander click handler attached to '{_node.Name}'");
 
+        // Set up name text click handler for selection
+        _nameText.PointerPressed += NameText_PointerPressed;
+        Logger.Debug($"Name text click handler attached to '{_node.Name}'");
+
         // Children container (hidden by default)
         _childrenContainer = new StackPanel {
             Orientation = Avalonia.Layout.Orientation.Vertical,
@@ -211,6 +237,12 @@ public class TreeItemControl : StackPanel {
         }
 
         UpdateChildrenVisibility();
+        e.Handled = true;
+    }
+
+    private void NameText_PointerPressed(object? sender, PointerPressedEventArgs e) {
+        Logger.Debug($"Name text clicked for '{_node.Name}'");
+        NodeSelected?.Invoke(_node);
         e.Handled = true;
     }
 
