@@ -21,14 +21,6 @@ public partial class FileWindowTabViewModel : ViewModelBase
     partial void OnSelectedTreeNodeChanged(DirectoryNode? value)
     {
         Logger.Debug($"FileWindowTabViewModel.SelectedTreeNode changed to: {value?.Name ?? "null"}");
-        UpdateMainViewPath(value);
-    }
-
-    private void UpdateMainViewPath(DirectoryNode? node)
-    {
-        if (node != null) {
-            Logger.Debug($"Updating main view path {node.Path}");
-        }
     }
 }
 

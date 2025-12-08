@@ -32,20 +32,9 @@ public partial class FileWindowTabView : UserControl
             var treeViewItems = _viewModel.TreeViewItems;
             if (treeViewItems.Count > 0) {
                 // Load the home folder by default
-                _fileTableView.CurrentPath = treeViewItems[0].Path;
+                _fileTableView.CurrentNode = treeViewItems[0];
                 Logger.Info($"Initialized TableView with default path: {treeViewItems[0].Path}");
             }
-
-            // When a folder is opened in the table view, update the path
-            _fileTableView.FolderOpened += (folderPath) => {
-                Logger.Info($"TableView folder opened: {folderPath}");
-            };
-
-            // When a file is clicked in the table view
-            _fileTableView.FileClicked += (filePath) => {
-                Logger.Info($"TableView file clicked: {filePath}");
-                // TODO: Implement file opening/execution
-            };
         } else {
             Logger.Warning("FileTableView or ViewModel not found during initialization");
         }

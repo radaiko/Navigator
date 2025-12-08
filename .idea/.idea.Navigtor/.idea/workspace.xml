@@ -8,10 +8,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e66eecff-a851-45f0-aa6b-c7f616e7c1e5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Navigtor/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Navigtor/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controls/TreeView.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controls/TreeView.axaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModels/FileWindowTabViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModels/FileWindowTabViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controls/TableView.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controls/TableView.axaml.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/FileWindowTabView.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/FileWindowTabView.axaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/FileWindowTabView.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Views/FileWindowTabView.axaml.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +135,7 @@
       <updated>1765132899362</updated>
       <workItem from="1765132901003" duration="157000" />
       <workItem from="1765133138283" duration="137000" />
-      <workItem from="1765133295983" duration="22165000" />
+      <workItem from="1765133295983" duration="22752000" />
     </task>
     <task id="LOCAL-00001" summary="fix naming">
       <option name="closed" value="true" />
@@ -154,7 +153,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765218012895</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="link treeview selection with maindataview">
+      <option name="closed" value="true" />
+      <created>1765218739242</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1765218739242</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -166,7 +173,8 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="fix naming" />
     <MESSAGE value="TreeView half finished" />
-    <option name="LAST_COMMIT_MESSAGE" value="TreeView half finished" />
+    <MESSAGE value="link treeview selection with maindataview" />
+    <option name="LAST_COMMIT_MESSAGE" value="link treeview selection with maindataview" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

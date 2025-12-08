@@ -23,7 +23,7 @@
                     BorderBrush="{DynamicResource SystemControlBorderBaseMediumColor}"
                     BorderThickness="1"
                     CornerRadius="4">
-                <controls:TableView x:Name="FileTableView" />
+                <controls:TableView x:Name="FileTableView" CurrentNode="{Binding SelectedTreeNode, Mode=TwoWay}" />
             </Border>
         </Grid>
     </Border>
