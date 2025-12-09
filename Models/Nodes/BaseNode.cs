@@ -1,16 +1,9 @@
 using CommunityToolkit.Mvvm.ComponentModel;
+using System.Collections.Immutable;
 
 namespace Navigator.Models.Nodes;
 
 public class BaseNode : ObservableObject {
-
-    #region Properties ----------------------------------------------
-    public string Name { get; }
-    public string Path { get; }
-
-    public string Icon => this is FileNode ? FileNode.Icon : DirectoryNode.Icon;
-    #endregion
-
     protected BaseNode(string path) {
         Path = path;
         Name = System.IO.Path.GetFileName(path);
@@ -20,6 +13,7 @@ public class BaseNode : ObservableObject {
     }
 
     #region Static Methods ------------------------------------------
+
     internal static string FormatBytes(long bytes) {
         string[] sizes = { "B", "KB", "MB", "GB", "TB" };
         double len = bytes;
@@ -28,7 +22,23 @@ public class BaseNode : ObservableObject {
             order++;
             len = len / 1024;
         }
+
         return $"{len:0.##} {sizes[order]}";
     }
+
+    #endregion
+
+    #region Properties ----------------------------------------------
+
+    public string Name { get; }
+    public string Path { get; }
+
+    public string Icon => this is FileNode ? FileNode.Icon : DirectoryNode.Icon;
+
+    public virtual string Type => "";
+    public virtual string FormattedSize => "";
+    public virtual string LastModified => "";
+    public virtual ImmutableArray<BaseNode> Children => [];
+
     #endregion
 }

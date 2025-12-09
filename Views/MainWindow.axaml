@@ -11,7 +11,7 @@
         Height="600">
 
     <Design.DataContext>
-        <vm:MainWindowViewModel/>
+        <vm:MainWindowViewModel />
     </Design.DataContext>
 
     <Grid RowDefinitions="*">
@@ -20,7 +20,7 @@
                     Grid.Row="0">
             <TabControl.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Title}" Padding="16,8"/>
+                    <TextBlock Text="{Binding Title}" Padding="16,8" />
                 </DataTemplate>
             </TabControl.ItemTemplate>
             <TabControl.ContentTemplate>

@@ -8,8 +8,6 @@ using Navigator.Views;
 namespace Navigator.Models;
 
 public class FileWindowTab : TabItem {
-    public ObservableCollection<DirectoryNode> RootFolders { get; }
-
     public FileWindowTab() {
         Logger.Info("Initializing FileWindowTab");
         RootFolders = [];
@@ -24,6 +22,8 @@ public class FileWindowTab : TabItem {
         Logger.Debug("FileWindowTab initialized successfully");
     }
 
+    public ObservableCollection<DirectoryNode> RootFolders { get; }
+
     private void InitializeRootFolders() {
         Logger.Debug("Initializing root folders");
         RootFolders.Clear();
@@ -34,14 +34,14 @@ public class FileWindowTab : TabItem {
         Logger.Debug($"Added Home folder: {homeFolder}");
 
         string desktopFolder = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-        if (!string.IsNullOrEmpty(desktopFolder) && System.IO.Directory.Exists(desktopFolder)) {
+        if (!string.IsNullOrEmpty(desktopFolder) && Directory.Exists(desktopFolder)) {
             var desktopDir = new DirectoryNode(desktopFolder);
             RootFolders.Add(desktopDir);
             Logger.Debug($"Added Desktop folder: {desktopFolder}");
         }
 
         string documentsFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-        if (!string.IsNullOrEmpty(documentsFolder) && System.IO.Directory.Exists(documentsFolder)) {
+        if (!string.IsNullOrEmpty(documentsFolder) && Directory.Exists(documentsFolder)) {
             var docDir = new DirectoryNode(documentsFolder);
             RootFolders.Add(docDir);
             Logger.Debug($"Added Documents folder: {documentsFolder}");
@@ -63,4 +63,3 @@ public class FileWindowTab : TabItem {
         Logger.Info($"Root folders initialized successfully. Total folders: {RootFolders.Count}");
     }
 }
-

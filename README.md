@@ -1,9 +1,11 @@
 # Navigtor
+
 A better file explorer for MacOS, Windows and Linux
 
 ## Project Structure
 
 This is a cross-platform desktop application built with:
+
 - **Avalonia UI 11.3.9** - Modern cross-platform UI framework
 - **CommunityToolkit.MVVM 8.2.1** - MVVM helpers and source generators
 - **.NET 9.0** - Target framework
@@ -32,6 +34,7 @@ Navigtor/
 ## Getting Started
 
 ### Prerequisites
+
 - [.NET 10.0 SDK](https://dotnet.microsoft.com/download/dotnet/10.0) or later
 
 ### Building
@@ -50,6 +53,7 @@ dotnet run
 ## Platform-Specific Icons
 
 The application includes placeholder icons for all supported platforms:
+
 - **Windows**: `Assets/navigtor.ico` (multi-resolution .ico file)
 - **macOS**: `Assets/navigtor.icns` (Apple icon format)
 - **Linux**: `Assets/navigtor-256.png` (PNG format, multiple sizes available)

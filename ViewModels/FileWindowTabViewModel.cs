@@ -5,22 +5,16 @@ using Navigator.Models.Nodes;
 
 namespace Navigator.ViewModels;
 
-public partial class FileWindowTabViewModel : ViewModelBase
-{
-    [ObservableProperty]
-    private ObservableCollection<DirectoryNode> _treeViewItems = [];
+public partial class FileWindowTabViewModel : ViewModelBase {
+    [ObservableProperty] private DirectoryNode? _selectedTreeNode;
 
-    [ObservableProperty]
-    private DirectoryNode? _selectedTreeNode;
+    [ObservableProperty] private ObservableCollection<DirectoryNode> _treeViewItems = [];
 
-    public FileWindowTabViewModel(FileWindowTab model)
-    {
+    public FileWindowTabViewModel(FileWindowTab model) {
         TreeViewItems = model.RootFolders;
     }
 
-    partial void OnSelectedTreeNodeChanged(DirectoryNode? value)
-    {
+    partial void OnSelectedTreeNodeChanged(DirectoryNode? value) {
         Logger.Debug($"FileWindowTabViewModel.SelectedTreeNode changed to: {value?.Name ?? "null"}");
     }
 }
-
