@@ -69,5 +69,40 @@
             <Setter Property="Background" Value="{StaticResource AppSelectedBackground}" />
             <Setter Property="Foreground" Value="{StaticResource AppSelectedText}" />
         </Style>
+
+        <!-- Window Control Button Style -->
+        <Style Selector="Button.WindowControlButton">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="{StaticResource AppText}" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+        <Style Selector="Button.WindowControlButton:pointerover">
+            <Setter Property="Background" Value="{StaticResource AppHoverBackground}" />
+        </Style>
+        <Style Selector="Button.WindowControlButton:pressed">
+            <Setter Property="Background" Value="{StaticResource AppAccent}" />
+            <Setter Property="Foreground" Value="{StaticResource AppSelectedText}" />
+        </Style>
+        <Style Selector="Button.WindowControlButton.CloseButton:pointerover">
+            <Setter Property="Background" Value="#ff4444" />
+            <Setter Property="Foreground" Value="{StaticResource AppSelectedText}" />
+        </Style>
+
+        <!-- Tab Close Button Style -->
+        <Style Selector="Button.TabCloseButton">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="{StaticResource AppText}" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Padding" Value="2" />
+        </Style>
+        <Style Selector="Button.TabCloseButton:pointerover">
+            <Setter Property="Background" Value="{StaticResource AppHoverBackground}" />
+        </Style>
+        <Style Selector="Button.TabCloseButton:pressed">
+            <Setter Property="Background" Value="#ff4444" />
+            <Setter Property="Foreground" Value="{StaticResource AppSelectedText}" />
+        </Style>
     </Application.Styles>
 </Application>
