@@ -4,6 +4,7 @@
         xmlns:conv="using:Navigator.Converters"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:models="clr-namespace:Navigator.Models"
         mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="600"
         x:Class="Navigator.Views.MainWindow"
         Icon="/Assets/navigator.ico"
@@ -103,7 +104,7 @@
                 </Style>
             </TabControl.Styles>
             <TabControl.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate DataType="models:FileWindowTab">
                     <DockPanel LastChildFill="False" Height="24" VerticalAlignment="Center">
                         <Button DockPanel.Dock="Right"
                                 Width="24"
@@ -120,7 +121,8 @@
                                 VerticalAlignment="Bottom">
                             <TextBlock Text="×" FontSize="12" TextAlignment="Center" VerticalAlignment="Center" />
                         </Button>
-                        <TextBlock Text="{Binding Title}"
+                        <!-- TODO: fix the binding problem here -->
+                        <TextBlock Text="{Binding ViewModel.SelectedTreeNode.DirectoryName}"
                                    VerticalAlignment="Center"
                                    Height="12"
                                    FontSize="12"

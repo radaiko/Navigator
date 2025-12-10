@@ -66,7 +66,6 @@ public partial class DirectoryNode : BaseNode {
     #region Properties ----------------------------------------------
 
     [ObservableProperty] private ImmutableArray<BaseNode> _children = [];
-
     [ObservableProperty] private bool _isExpanded;
 
     private readonly DateTime _lastModified;
@@ -74,6 +73,7 @@ public partial class DirectoryNode : BaseNode {
     public override string Type => "Folder";
     public override string FormattedSize => "—";
     public override string LastModified => $"{_lastModified:yyyy-MM-dd HH:mm}";
+    public override string DirectoryName => System.IO.Path.GetFileName(Path) ?? "";
 
     #endregion
 }

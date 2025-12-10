@@ -32,13 +32,14 @@ public class BaseNode : ObservableObject {
 
     public string Name { get; }
     public string Path { get; }
-
     public string Icon => this is FileNode ? FileNode.Icon : DirectoryNode.Icon;
 
+    // Virtual properties to be overridden in derived classes
     public virtual string Type => "";
     public virtual string FormattedSize => "";
     public virtual string LastModified => "";
     public virtual ImmutableArray<BaseNode> Children => [];
+    public virtual string DirectoryName => "";
 
     #endregion
 }

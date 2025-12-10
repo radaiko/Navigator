@@ -1,13 +1,14 @@
 using System;
 using System.IO;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Navigator.Models.Nodes;
 
 /// <summary>
 ///     Represents a file item
 /// </summary>
-public class FileNode : BaseNode {
-    #region Constructor ------------------------------------------------
+public partial class FileNode : BaseNode {
+    #region Constructor ---------------------------------------------
 
     public FileNode(string path) : base(path) {
         var fileInfo = new FileInfo(path);
@@ -36,6 +37,7 @@ public class FileNode : BaseNode {
     public override string Type { get; }
     public override string FormattedSize => FormatBytes(_size);
     public override string LastModified => $"{_lastModified:yyyy-MM-dd HH:mm}";
+    public override string DirectoryName => System.IO.Path.GetFileName(System.IO.Path.GetDirectoryName(Path)) ?? "";
 
     #endregion
 }
