@@ -47,5 +47,6 @@ public partial class MainWindow : Window {
                 viewModel.CloseTab(selectedTab);
             }
         }
+        // TODO: do not switch to the first one but the next one left if available
     }
 }
