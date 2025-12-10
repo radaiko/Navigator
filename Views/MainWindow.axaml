@@ -37,6 +37,7 @@
                     <Setter Property="BorderBrush" Value="{StaticResource AppBorder}" />
                     <Setter Property="BorderThickness" Value="0,0,1,0" />
                     <Setter Property="FontSize" Value="12" />
+                    <Setter Property="MinHeight" Value="24" />
                 </Style>
                 <Style Selector="TabItem:selected">
                     <Setter Property="Background" Value="{StaticResource AppBackground}" />
