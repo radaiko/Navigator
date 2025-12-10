@@ -18,33 +18,49 @@
     </Design.DataContext>
 
     <Grid RowDefinitions="*">
-        <TabControl ItemsSource="{Binding Tabs}"
-                    SelectedItem="{Binding SelectedTab}"
-                    Grid.Row="0"
-                    Background="{StaticResource AppBackground}"
-                    Foreground="{StaticResource AppText}"
-                    Padding="0">
+        <DockPanel Grid.Row="0" LastChildFill="True">
+            <TabControl ItemsSource="{Binding Tabs}"
+                        SelectedItem="{Binding SelectedTab}"
+                        Background="{StaticResource AppBackground}"
+                        Foreground="{StaticResource AppText}"
+                        Padding="0">
             <TabControl.Styles>
                 <Style Selector="TabControl">
                     <Setter Property="Padding" Value="0" />
+                    <Setter Property="Margin" Value="0" />
                 </Style>
                 <Style Selector="TabItem">
                     <Setter Property="Background" Value="{StaticResource AppBackgroundSecondary}" />
                     <Setter Property="Foreground" Value="{StaticResource AppText}" />
-                    <Setter Property="Padding" Value="16,12" />
+                    <Setter Property="Padding" Value="5,0" />
                     <Setter Property="Margin" Value="0" />
                     <Setter Property="BorderBrush" Value="{StaticResource AppBorder}" />
                     <Setter Property="BorderThickness" Value="0,0,1,0" />
+                    <Setter Property="FontSize" Value="12" />
                 </Style>
                 <Style Selector="TabItem:selected">
                     <Setter Property="Background" Value="{StaticResource AppBackground}" />
-                    <Setter Property="BorderBrush" Value="{StaticResource AppAccent}" />
-                    <Setter Property="BorderThickness" Value="0,0,1,2" />
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="Margin" Value="0" />
                 </Style>
             </TabControl.Styles>
             <TabControl.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Title}" />
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <TextBlock Text="{Binding Title}" VerticalAlignment="Center" />
+                        <Button Width="16"
+                                Height="16"
+                                Padding="0"
+                                Margin="0"
+                                Background="Transparent"
+                                Foreground="{StaticResource AppText}"
+                                BorderThickness="0"
+                                Click="OnCloseTabClicked"
+                                Tag="{Binding }"
+                                ToolTip.Tip="Close Tab">
+                            <TextBlock Text="×" FontSize="14" TextAlignment="Center" VerticalAlignment="Center" />
+                        </Button>
+                    </StackPanel>
                 </DataTemplate>
             </TabControl.ItemTemplate>
             <TabControl.ContentTemplate>
@@ -53,6 +69,7 @@
                 </DataTemplate>
             </TabControl.ContentTemplate>
         </TabControl>
+        </DockPanel>
     </Grid>
 
 </Window>

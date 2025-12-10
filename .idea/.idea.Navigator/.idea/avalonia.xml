@@ -9,6 +9,8 @@
         <entry key="Controls/ItemContainer.axaml" value="Navigator.csproj" />
         <entry key="Controls/TableView.axaml" value="Navigator.csproj" />
         <entry key="Controls/TreeView.axaml" value="Navigator.csproj" />
+        <entry key="Styles/Colors.axaml" value="Navigator.csproj" />
+        <entry key="Styles/Components.axaml" value="Navigator.csproj" />
         <entry key="Views/FileWindowTabView.axaml" value="Navigator.csproj" />
         <entry key="Views/MainWindow.axaml" value="Navigator.csproj" />
       </map>
