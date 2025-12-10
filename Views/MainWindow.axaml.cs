@@ -43,10 +43,8 @@ public partial class MainWindow : Window {
     }
 
     private void CloseActiveTab() {
-        if (DataContext is MainWindowViewModel viewModel) {
-            if (viewModel.SelectedTab is TabItem selectedTab) {
-                viewModel.CloseTab(selectedTab);
-            }
+        if (DataContext is MainWindowViewModel { SelectedTab: { } selectedTab } viewModel) {
+            viewModel.CloseTab(selectedTab);
         }
         // TODO: do not switch to the first one but the next one left if available
     }
@@ -84,7 +82,7 @@ public partial class MainWindow : Window {
         if (e.GetCurrentPoint(this).Properties.IsLeftButtonPressed) {
             // Check if the click is on the title bar area (not on buttons)
             var point = e.GetCurrentPoint(this);
-            if (point.Position.Y < 36) {
+            if (point.Position.Y < 24) {
                 // Exclude clicks on window control buttons (right side)
                 // 3 buttons × 36px = 108px
                 if (point.Position.X < Bounds.Width - 108) {
