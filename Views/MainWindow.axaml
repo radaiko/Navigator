@@ -7,8 +7,11 @@
         x:Class="Navigator.Views.MainWindow"
         Icon="/Assets/navigator.ico"
         Title="Navigator"
-        Width="1000"
-        Height="600">
+        Width="1200"
+        Height="700"
+        Background="{StaticResource AppBackground}"
+        Foreground="{StaticResource AppText}"
+        WindowStartupLocation="CenterScreen">
 
     <Design.DataContext>
         <vm:MainWindowViewModel />
@@ -17,10 +20,31 @@
     <Grid RowDefinitions="*">
         <TabControl ItemsSource="{Binding Tabs}"
                     SelectedItem="{Binding SelectedTab}"
-                    Grid.Row="0">
+                    Grid.Row="0"
+                    Background="{StaticResource AppBackground}"
+                    Foreground="{StaticResource AppText}"
+                    Padding="0">
+            <TabControl.Styles>
+                <Style Selector="TabControl">
+                    <Setter Property="Padding" Value="0" />
+                </Style>
+                <Style Selector="TabItem">
+                    <Setter Property="Background" Value="{StaticResource AppBackgroundSecondary}" />
+                    <Setter Property="Foreground" Value="{StaticResource AppText}" />
+                    <Setter Property="Padding" Value="16,12" />
+                    <Setter Property="Margin" Value="0" />
+                    <Setter Property="BorderBrush" Value="{StaticResource AppBorder}" />
+                    <Setter Property="BorderThickness" Value="0,0,1,0" />
+                </Style>
+                <Style Selector="TabItem:selected">
+                    <Setter Property="Background" Value="{StaticResource AppBackground}" />
+                    <Setter Property="BorderBrush" Value="{StaticResource AppAccent}" />
+                    <Setter Property="BorderThickness" Value="0,0,1,2" />
+                </Style>
+            </TabControl.Styles>
             <TabControl.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Title}" Padding="16,8" />
+                    <TextBlock Text="{Binding Title}" />
                 </DataTemplate>
             </TabControl.ItemTemplate>
             <TabControl.ContentTemplate>
