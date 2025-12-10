@@ -64,12 +64,12 @@
         </Border>
 
         <!-- Content Grid -->
-        <Grid Grid.Row="1" ColumnDefinitions="260,*">
+        <Grid Grid.Row="1" ColumnDefinitions="260,Auto,*">
             <!-- Left Panel: TreeView for Folder Navigation -->
             <Border Grid.Column="0"
                     Background="{StaticResource AppBackgroundSecondary}"
                     BorderBrush="{StaticResource AppBorder}"
-                    BorderThickness="0,0,1,0">
+                    BorderThickness="0,0,0,0">
                 <TreeView ItemsSource="{Binding TreeViewItems}"
                           SelectedItem="{Binding SelectedTreeNode, Mode=TwoWay}"
                           Padding="0"
@@ -110,8 +110,15 @@
                 </TreeView>
             </Border>
 
+            <!-- Grid Splitter -->
+            <GridSplitter Grid.Column="1"
+                          Background="{StaticResource AppBorder}"
+                          ResizeDirection="Columns"
+                          Width="1"
+                          HorizontalAlignment="Center" />
+
             <!-- Right Panel: File List -->
-            <Grid Grid.Column="1" RowDefinitions="Auto,*" Background="{StaticResource AppBackground}">
+            <Grid Grid.Column="2" RowDefinitions="Auto,*" Background="{StaticResource AppBackground}">
                 <!-- Column Headers -->
                 <Border Grid.Row="0"
                         Background="{StaticResource AppBackgroundSecondary}"
