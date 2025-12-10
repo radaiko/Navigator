@@ -12,8 +12,8 @@
                 Background="{StaticResource AppBackgroundSecondary}"
                 BorderBrush="{StaticResource AppBorder}"
                 BorderThickness="0,0,0,1"
-                Padding="12,0"
-                Height="52">
+                Padding="4,0,4,0"
+                Height="32">
             <Grid ColumnDefinitions="Auto,Auto,Auto,Auto,8,*" VerticalAlignment="Center" Margin="0">
                 <!-- Navigation Buttons -->
                 <Button Grid.Column="0"
@@ -52,10 +52,12 @@
                 <TextBox Grid.Column="5"
                          Text="{Binding SelectedTreeNode.Path, Mode=OneWay}"
                          IsReadOnly="True"
-                         Height="36"
-                         VerticalAlignment="Center"
+                         Height="24"
+                         MinHeight="24"
                          Margin="0"
-                         Padding="12,8"
+                         Padding="12,4 ,0 ,4"
+                         VerticalAlignment="Center"
+                         VerticalContentAlignment="Center"
                          Foreground="{StaticResource AppTextSecondary}"
                          FontSize="12" />
             </Grid>
@@ -75,21 +77,31 @@
                     <TreeView.Styles>
                         <Style Selector="TreeViewItem" x:DataType="nodes:BaseNode">
                             <Setter Property="IsExpanded" Value="{Binding IsExpanded}" />
+                            <Setter Property="Padding" Value="0,0,0,0" />
+                        </Style>
+                        <Style Selector="TreeViewItem /template/ ToggleButton">
+                            <Setter Property="Width" Value="10" />
+                            <Setter Property="Height" Value="10" />
+                            <Setter Property="Margin" Value="0,0,2,0" />
                         </Style>
                     </TreeView.Styles>
                     <TreeView.ItemTemplate>
                         <TreeDataTemplate x:DataType="nodes:BaseNode"
                                           ItemsSource="{Binding Children, Converter={StaticResource DirectoryNodeFilter}}">
                             <StackPanel Orientation="Horizontal"
-                                        Spacing="8"
-                                        Margin="6,4"
+                                        Spacing="4"
+                                        Margin="0,4"
                                         VerticalAlignment="Center">
                                 <TextBlock Text="{Binding Icon}"
-                                           FontSize="16"
+                                           FontSize="12"
+                                           Margin="0"
+                                           Padding="0"
                                            VerticalAlignment="Center" />
                                 <TextBlock Text="{Binding Name}"
                                            Foreground="{StaticResource AppText}"
-                                           FontSize="13"
+                                           FontSize="12"
+                                           Margin="0"
+                                           Padding="0"
                                            VerticalAlignment="Center"
                                            TextTrimming="CharacterEllipsis" />
                             </StackPanel>
@@ -106,7 +118,7 @@
                         BorderBrush="{StaticResource AppBorder}"
                         BorderThickness="0,0,0,1"
                         Padding="0"
-                        Height="40">
+                        Height="24">
                     <Grid ColumnDefinitions="40,*,120,100,140"
                           VerticalAlignment="Center"
                           Margin="12,0">
