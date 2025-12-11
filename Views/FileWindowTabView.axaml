@@ -259,10 +259,10 @@
                 Background="{StaticResource AppBackgroundSecondary}"
                 BorderBrush="{StaticResource AppBorder}"
                 BorderThickness="0,1,0,0"
-                Height="32"
+                Height="16"
                 Padding="12,0">
             <TextBlock Foreground="{StaticResource AppTextSecondary}"
-                       FontSize="12"
+                       FontSize="10"
                        VerticalAlignment="Center"
                        Text="Ready" />
         </Border>
