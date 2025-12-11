@@ -13,6 +13,22 @@ namespace Navigator.Models.Nodes;
 public partial class DirectoryNode : BaseNode {
     #region Constructor ---------------------------------------------
 
+    /// <summary>
+    /// Constructor only used for drives initialization on windows
+    /// </summary>
+    /// <param name="path"></param>
+    /// <param name="children"></param>
+    public DirectoryNode(string path, DirectoryNode[] children) : base(path) {
+        var directoryInfo = new DirectoryInfo(path);
+        _lastModified = directoryInfo.LastWriteTime;
+        _children = [..children];
+    }
+
+    /// <summary>
+    /// Constructor used for normal directory initialization
+    /// </summary>
+    /// <param name="path"></param>
+    /// <param name="isRecursive"></param>
     public DirectoryNode(string path, bool isRecursive = true) : base(path) {
         var directoryInfo = new DirectoryInfo(path);
         _lastModified = directoryInfo.LastWriteTime;

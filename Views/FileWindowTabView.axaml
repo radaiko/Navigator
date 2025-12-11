@@ -190,7 +190,8 @@
                                         Padding="0"
                                         Height="40"
                                         Background="Transparent"
-                                        Cursor="Hand">
+                                        Cursor="Hand"
+                                        DoubleTapped="OnItemDoubleTapped">
                                     <!-- Hover Effect -->
                                     <Border.Styles>
                                         <Style Selector="Border:pointerover">
