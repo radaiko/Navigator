@@ -41,6 +41,7 @@ public partial class RootFolders : ObservableObject, IEnumerable<DirectoryNode> 
             currentNode = nextNode;
         }
         ActualNode = currentNode;
+        ActualNode.UpdateChildren();
         Logger.Debug($"Set ActualNode to: {currentNode.Path}");
         AddToHistory(currentNode.Path);
     }
