@@ -4,6 +4,7 @@ using System.Collections.Immutable;
 namespace Navigator.Models.Nodes;
 
 public class BaseNode : ObservableObject {
+    #region Constructor -------------------------------------------
     protected BaseNode(string path) {
         Path = path;
         Name = System.IO.Path.GetFileName(path);
@@ -11,9 +12,9 @@ public class BaseNode : ObservableObject {
             Name = path; // Root directory case
         }
     }
+    #endregion
 
-    #region Static Methods ------------------------------------------
-
+    #region Static Methods -----------------------------------------
     internal static string FormatBytes(long bytes) {
         string[] sizes = { "B", "KB", "MB", "GB", "TB" };
         double len = bytes;
@@ -25,11 +26,9 @@ public class BaseNode : ObservableObject {
 
         return $"{len:0.##} {sizes[order]}";
     }
-
     #endregion
 
-    #region Properties ----------------------------------------------
-
+    #region Properties -------------------------------------------
     public string Name { get; }
     public string Path { get; }
     public string Icon => this is FileNode ? FileNode.Icon : DirectoryNode.Icon;
@@ -40,6 +39,5 @@ public class BaseNode : ObservableObject {
     public virtual string LastModified => "";
     public virtual ImmutableArray<BaseNode> Children => [];
     public virtual string DirectoryName => "";
-
     #endregion
 }

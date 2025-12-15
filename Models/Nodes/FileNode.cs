@@ -8,7 +8,7 @@ namespace Navigator.Models.Nodes;
 ///     Represents a file item
 /// </summary>
 public partial class FileNode : BaseNode {
-    #region Constructor ---------------------------------------------
+    #region Constructor -------------------------------------------
 
     public FileNode(string path) : base(path) {
         var fileInfo = new FileInfo(path);
@@ -19,25 +19,26 @@ public partial class FileNode : BaseNode {
 
     #endregion
 
-    #region Static Methods ------------------------------------------
+    #region Static Methods -----------------------------------------
 
     public new static string Icon => "📄";
 
     #endregion
 
-    #region Fields --------------------------------------------------
+    #region Fields ------------------------------------------------
 
     private readonly long _size;
     private readonly DateTime _lastModified;
 
     #endregion
 
-    #region Properties ----------------------------------------------
+    #region Properties -------------------------------------------
 
     public override string Type { get; }
     public override string FormattedSize => FormatBytes(_size);
     public override string LastModified => $"{_lastModified:yyyy-MM-dd HH:mm}";
-    public override string DirectoryName => System.IO.Path.GetFileName(System.IO.Path.GetDirectoryName(Path)) ?? "";
+    public DirectoryNode? Parent { get; internal set; }
+    public override string DirectoryName => Parent?.Name ?? System.IO.Path.GetFileName(System.IO.Path.GetDirectoryName(Path)) ?? "";
 
     #endregion
 }

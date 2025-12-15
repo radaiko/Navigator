@@ -7,27 +7,17 @@ using Navigator.ViewModels;
 namespace Navigator.Views;
 
 public partial class FileWindowTabView : UserControl {
-    private readonly FileWindowTabViewModel? _viewModel;
-
     public FileWindowTabView() {
         InitializeComponent();
     }
 
     public FileWindowTabView(FileWindowTab model) : this() {
-        _viewModel = new FileWindowTabViewModel(model);
-        DataContext = _viewModel;
+        DataContext = new FileWindowTabViewModel(model);
     }
 
-    private void OnItemDoubleTapped(object? sender, TappedEventArgs e) {
-        if (_viewModel?.SelectedTreeNode?.Children is null) {
-            return;
-        }
-
-        // Get the data context of the double-clicked item
-        if (sender is Border border && border.DataContext is DirectoryNode directoryNode) {
-            // Set the selected tree node to the double-clicked directory
-            _viewModel.DoubleClickItem(directoryNode);
-            e.Handled = true;
+    private void BaseNode_DoubleTapped(object? sender, TappedEventArgs e) {
+        if (DataContext is FileWindowTabViewModel vm && sender is Control control && control.DataContext is BaseNode node) {
+            vm.DoubleClickItemCommand.Execute(node);
         }
     }
 }

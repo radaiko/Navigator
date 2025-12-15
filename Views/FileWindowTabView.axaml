@@ -6,7 +6,8 @@
              xmlns:nodes="clr-namespace:Navigator.Models.Nodes"
              xmlns:viewModels="clr-namespace:Navigator.ViewModels"
              x:Class="Navigator.Views.FileWindowTabView"
-             x:DataType="viewModels:FileWindowTabViewModel">
+             x:DataType="viewModels:FileWindowTabViewModel"
+             d:DataContext="{d:DesignInstance Type=viewModels:FileWindowTabViewModel, IsDesignTimeCreatable=False}">
 
     <Grid RowDefinitions="Auto,*,Auto" Background="{StaticResource AppBackground}">
         <!-- Top Navigation Bar -->
@@ -24,7 +25,8 @@
                         Height="36"
                         ToolTip.Tip="Back (Alt+Left)"
                         Margin="0,0,4,0"
-                        Content="←" />
+                        Content="←"
+                        Command="{Binding BackClickedCommand}"/>
 
                 <Button Grid.Column="1"
                         Classes="NavigationButton"
@@ -32,7 +34,8 @@
                         Height="36"
                         ToolTip.Tip="Forward (Alt+Right)"
                         Margin="0,0,4,0"
-                        Content="→" />
+                        Content="→"
+                        Command="{Binding ForwardClickedCommand}"/>
 
                 <Button Grid.Column="2"
                         Classes="NavigationButton"
@@ -40,7 +43,8 @@
                         Height="36"
                         ToolTip.Tip="Up (Alt+Up)"
                         Margin="0,0,4,0"
-                        Content="↑" />
+                        Content="↑"
+                        Command="{Binding UpClickedCommand}"/>
 
                 <Button Grid.Column="3"
                         Classes="NavigationButton"
@@ -48,20 +52,22 @@
                         Height="36"
                         ToolTip.Tip="Refresh (F5)"
                         Margin="0,0,4,0"
-                        Content="↻" />
+                        Content="↻"
+                        Command="{Binding RefreshClickedCommand}"/>
 
                 <!-- Path TextBox -->
-                <TextBox Grid.Column="5"
-                         Text="{Binding TreeViewItems.ActualNode.Path, Mode=OneWay}"
-                         IsReadOnly="True"
-                         Height="24"
-                         MinHeight="24"
-                         Margin="0"
-                         Padding="12,4 ,0 ,4"
-                         VerticalAlignment="Center"
-                         VerticalContentAlignment="Center"
-                         Foreground="{StaticResource AppTextSecondary}"
-                         FontSize="12" />
+                <TextBox
+                    Grid.Column="5"
+                    Text="{Binding Root.ActualNode.Path, Mode=OneWay}"
+                    IsReadOnly="True"
+                    Height="24"
+                    MinHeight="24"
+                    Margin="0"
+                    Padding="12,4 ,0 ,4"
+                    VerticalAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Foreground="{StaticResource AppTextSecondary}"
+                    FontSize="12" />
             </Grid>
         </Border>
 
@@ -72,8 +78,8 @@
                     Background="{StaticResource AppBackgroundSecondary}"
                     BorderBrush="{StaticResource AppBorder}"
                     BorderThickness="0,0,0,0">
-                <TreeView ItemsSource="{Binding TreeViewItems}"
-                          SelectedItem="{Binding SelectedTreeNode, Mode=TwoWay}"
+                <TreeView ItemsSource="{Binding Root}"
+                          SelectedItem="{Binding Root.ActualNode, Mode=TwoWay}"
                           Padding="0"
                           Margin="0">
                     <TreeView.Styles>
@@ -187,21 +193,15 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate x:DataType="nodes:BaseNode">
-                                <Border x:Name="ItemBorder"
-                                        BorderThickness="0,0,0,1"
-                                        BorderBrush="{StaticResource AppBorder}"
-                                        Padding="0"
-                                        Height="40"
-                                        Background="Transparent"
-                                        Cursor="Hand"
-                                        DoubleTapped="OnItemDoubleTapped">
-                                    <!-- Hover Effect -->
-                                    <Border.Styles>
-                                        <Style Selector="Border:pointerover">
-                                            <Setter Property="Background" Value="{StaticResource AppHoverBackground}" />
-                                        </Style>
-                                    </Border.Styles>
-
+                                <Border
+                                    x:Name="ItemBorder"
+                                    BorderThickness="0,0,0,1"
+                                    BorderBrush="{StaticResource AppBorder}"
+                                    Padding="0"
+                                    Height="40"
+                                    Background="Transparent"
+                                    Cursor="Hand"
+                                    DoubleTapped="BaseNode_DoubleTapped">
                                     <Grid ColumnDefinitions="40,*,120,100,140"
                                           VerticalAlignment="Center"
                                           Margin="12,0"
@@ -212,7 +212,6 @@
                                                    VerticalAlignment="Center"
                                                    HorizontalAlignment="Center"
                                                    Text="{Binding Icon}" />
-
                                         <!-- Name Column -->
                                         <TextBlock Grid.Column="1"
                                                    VerticalAlignment="Center"

@@ -1,8 +1,3 @@
-using System;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using Navigator.Models.Nodes;
 using Navigator.Views;
 using Navigator.ViewModels;
 
