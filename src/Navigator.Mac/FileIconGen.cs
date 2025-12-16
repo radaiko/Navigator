@@ -1,7 +1,10 @@
+using System;
 using System.Runtime.InteropServices;
+using AppKit;
 using Avalonia;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
+using CoreGraphics;
 
 namespace Navigator.Mac;
 

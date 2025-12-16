@@ -1,17 +1,14 @@
-﻿﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Navigator", "src/Navigator/Navigator.csproj", "{1F87064F-2F2A-4CB6-907C-E8F0D916C803}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Navigator.Mac", "src\Navigator.Mac\Navigator.Mac.csproj", "{3323D66C-EF4E-40F0-A627-FFF86F0EE869}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Navigator.UI", "src/Navigator.UI/Navigator.UI.csproj", "{A3A1C9F2-4D45-4D2A-9E2F-3A7F1B5E9C11}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Navigator.Windows", "src/Navigator.Windows/Navigator.Windows.csproj", "{B4B2C9E3-5E56-5E3B-AF3F-4B8F2C6F0D22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Navigator.Linux", "src/Navigator.Linux/Navigator.Linux.csproj", "{C5C3D9F4-6F67-6F4C-BF4F-5C9F3D7G1E33}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Navigator.Linux", "src/Navigator.Linux/Navigator.Linux.csproj", "{00000000-0000-0000-0000-000000000000}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,18 +32,6 @@ Global
 		{1F87064F-2F2A-4CB6-907C-E8F0D916C803}.Release|x64.Build.0 = Release|Any CPU
 		{1F87064F-2F2A-4CB6-907C-E8F0D916C803}.Release|x86.ActiveCfg = Release|Any CPU
 		{1F87064F-2F2A-4CB6-907C-E8F0D916C803}.Release|x86.Build.0 = Release|Any CPU
-		{3323D66C-EF4E-40F0-A627-FFF86F0EE869}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3323D66C-EF4E-40F0-A627-FFF86F0EE869}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3323D66C-EF4E-40F0-A627-FFF86F0EE869}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{3323D66C-EF4E-40F0-A627-FFF86F0EE869}.Debug|x64.Build.0 = Debug|Any CPU
-		{3323D66C-EF4E-40F0-A627-FFF86F0EE869}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{3323D66C-EF4E-40F0-A627-FFF86F0EE869}.Debug|x86.Build.0 = Debug|Any CPU
-		{3323D66C-EF4E-40F0-A627-FFF86F0EE869}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3323D66C-EF4E-40F0-A627-FFF86F0EE869}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3323D66C-EF4E-40F0-A627-FFF86F0EE869}.Release|x64.ActiveCfg = Release|Any CPU
-		{3323D66C-EF4E-40F0-A627-FFF86F0EE869}.Release|x64.Build.0 = Release|Any CPU
-		{3323D66C-EF4E-40F0-A627-FFF86F0EE869}.Release|x86.ActiveCfg = Release|Any CPU
-		{3323D66C-EF4E-40F0-A627-FFF86F0EE869}.Release|x86.Build.0 = Release|Any CPU
 		{A3A1C9F2-4D45-4D2A-9E2F-3A7F1B5E9C11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A3A1C9F2-4D45-4D2A-9E2F-3A7F1B5E9C11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3A1C9F2-4D45-4D2A-9E2F-3A7F1B5E9C11}.Debug|x64.ActiveCfg = Debug|Any CPU
