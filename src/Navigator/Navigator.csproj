@@ -1,0 +1,95 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net10.0-macos</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ApplicationManifest>app.manifest</ApplicationManifest>
+        <AvaloniaUseCompiledBindingsByDefault>false</AvaloniaUseCompiledBindingsByDefault>
+        <ImplicitUsings>disable</ImplicitUsings>
+        <ApplicationId>com.radaiko.Navigator</ApplicationId>
+        <!-- Enable macOS app bundle creation; set RuntimeIdentifier to your machine arch if necessary (osx-arm64 or osx-x64) -->
+        <RuntimeIdentifier>osx-arm64</RuntimeIdentifier>
+        <UseMacAppBundle>true</UseMacAppBundle>
+    </PropertyGroup>
+
+    <!-- Platform-specific icon configurations -->
+    <ItemGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
+        <ApplicationIcon Include="Assets\navigator.ico"/>
+    </ItemGroup>
+
+    <ItemGroup Condition="$([MSBuild]::IsOSPlatform('OSX'))">
+        <!-- Use the BundleResource item so the macOS SDK copies it into the .app bundle -->
+        <BundleResource Include="Assets/navigator.icns">
+            <LogicalName>navigator.icns</LogicalName>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </BundleResource>
+    </ItemGroup>
+
+    <!-- After build, patch the generated Info.plist minimum system version to match the current macOS if SDK sets a higher value
+         This avoids LSOpenURLsWithCompletionHandler -10825 when the SDK hardcodes a newer SDK version than the host. -->
+    <Target Name="FixGeneratedInfoPlist" AfterTargets="Build" Condition=" '$(OS)' == 'Unix' ">
+      <PropertyGroup>
+        <AppBundlePath>$(OutputPath)$(AssemblyName).app</AppBundlePath>
+        <GeneratedInfoPlist>$(AppBundlePath)/Contents/Info.plist</GeneratedInfoPlist>
+      </PropertyGroup>
+      <!-- Only attempt to modify Info.plist if it exists -->
+      <Exec Command="/bin/sh -c 'if [ -f &quot;$(GeneratedInfoPlist)&quot; ]; then /usr/bin/plutil -replace LSMinimumSystemVersion -string &quot;26.1&quot; &quot;$(GeneratedInfoPlist)&quot;; fi'" ContinueOnError="true" />
+      <!-- Re-sign the bundle ad-hoc so the modified Info.plist doesn't invalidate the signature (local dev only) -->
+      <Exec Command="/bin/sh -c 'if [ -d &quot;$(AppBundlePath)&quot; ]; then /usr/bin/codesign --force --deep --sign - &quot;$(AppBundlePath)&quot; || true; fi'" ContinueOnError="true" />
+      <!-- Remove quarantine attribute if present to avoid Gatekeeper blocking the app on local machines -->
+      <Exec Command="/bin/sh -c 'if [ -d &quot;$(AppBundlePath)&quot; ]; then /usr/bin/xattr -dr com.apple.quarantine &quot;$(AppBundlePath)&quot; || true; fi'" ContinueOnError="true" />
+    </Target>
+
+    <ItemGroup Condition="$([MSBuild]::IsOSPlatform('Linux'))">
+        <None Include="Assets\navigator-256.png">
+            <Link>navigator.png</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup>
+        <!-- Exclude source that has been moved to Navigator.UI to avoid duplicate types -->
+        <Compile Remove="Views\**\*.cs" />
+        <Compile Remove="ViewModels\**\*.cs" />
+        <Compile Remove="Models\**\*.cs" />
+        <Compile Remove="Models\Nodes\**\*.cs" />
+        <Compile Remove="Converters\**\*.cs" />
+        <Compile Remove="Utils\**\*.cs" />
+        <Compile Remove="GlobalUsings.cs" />
+        <Compile Remove="ViewLocator.cs" />
+        <None Remove="App.axaml" />
+        <Compile Remove="App.axaml.cs" />
+        <AvaloniaXaml Remove="App.axaml" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <AvaloniaResource Include="Assets\**"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Avalonia" Version="11.3.9"/>
+        <PackageReference Include="Avalonia.Controls.DataGrid" Version="11.3.9"/>
+        <PackageReference Include="Avalonia.Desktop" Version="11.3.9"/>
+        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.9"/>
+        <PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.9"/>
+        <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+        <PackageReference Include="Avalonia.Diagnostics" Version="11.3.9">
+            <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
+            <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1"/>
+        <PackageReference Include="Radaiko.EasyLogger" Version="0.0.2"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <AvaloniaXaml Remove="Controls\TableView.axaml"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Remove="Controls\TableView.axaml.cs"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Navigator.UI\Navigator.UI.csproj" />
+    </ItemGroup>
+</Project>

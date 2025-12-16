@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0-macos</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <OutDir>../../bin</OutDir>
+        <!-- ApplicationId provides the bundle identifier expected by Xamarin.Shared.targets -->
+        <ApplicationId>com.radaiko.Navigator.Mac</ApplicationId>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Avalonia" Version="11.3.9" />
+    </ItemGroup>
+
+</Project>

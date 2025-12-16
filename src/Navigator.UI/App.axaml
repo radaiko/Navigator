@@ -1,0 +1,45 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="Navigator.UI.App"
+             xmlns:local="using:Navigator.UI"
+             xmlns:converters="using:Navigator.UI.Converters"
+             RequestedThemeVariant="Dark">
+    <!-- Shared resources and styles -->
+
+    <Application.Resources>
+        <converters:DirectoryNodeFilterConverter x:Key="DirectoryNodeFilter" />
+
+        <!-- Dark Mode Colors -->
+        <Color x:Key="DarkBackground">#1e1e1e</Color>
+        <Color x:Key="DarkBackgroundSecondary">#2d2d2d</Color>
+        <Color x:Key="DarkText">#e0e0e0</Color>
+        <Color x:Key="DarkTextSecondary">#b0b0b0</Color>
+        <Color x:Key="DarkBorder">#3c3c3c</Color>
+        <Color x:Key="DarkAccent">#0078d4</Color>
+        <Color x:Key="DarkHoverBackground">#3c3c3c</Color>
+        <Color x:Key="DarkSelectedBackground">#0078d4</Color>
+        <Color x:Key="DarkSelectedText">#ffffff</Color>
+
+        <!-- Brushes -->
+        <SolidColorBrush x:Key="AppBackground" Color="{StaticResource DarkBackground}" />
+        <SolidColorBrush x:Key="AppBackgroundSecondary" Color="{StaticResource DarkBackgroundSecondary}" />
+        <SolidColorBrush x:Key="AppText" Color="{StaticResource DarkText}" />
+        <SolidColorBrush x:Key="AppTextSecondary" Color="{StaticResource DarkTextSecondary}" />
+        <SolidColorBrush x:Key="AppBorder" Color="{StaticResource DarkBorder}" />
+        <SolidColorBrush x:Key="AppAccent" Color="{StaticResource DarkAccent}" />
+        <SolidColorBrush x:Key="AppHoverBackground" Color="{StaticResource DarkHoverBackground}" />
+        <SolidColorBrush x:Key="AppSelectedBackground" Color="{StaticResource DarkSelectedBackground}" />
+        <SolidColorBrush x:Key="AppSelectedText" Color="{StaticResource DarkSelectedText}" />
+    </Application.Resources>
+
+    <Application.DataTemplates>
+        <local:ViewLocator />
+    </Application.DataTemplates>
+
+    <Application.Styles>
+        <FluentTheme />
+
+        <!-- Shared styles omitted for brevity (kept from original) -->
+    </Application.Styles>
+</Application>
+

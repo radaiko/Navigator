@@ -1,0 +1,83 @@
+using System;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.IO;
+using System.Linq;
+using CommunityToolkit.Mvvm.ComponentModel;
+
+namespace Navigator.UI.Models.Nodes;
+
+public partial class DirectoryNode : BaseNode {
+    public DirectoryNode(string path, DirectoryNode[] children) : base(path) {
+        var directoryInfo = new DirectoryInfo(path);
+        _lastModified = directoryInfo.LastWriteTime;
+        _children = [.. children];
+        foreach (var child in _children.OfType<DirectoryNode>()) {
+            child._parent = this;
+        }
+    }
+
+    public DirectoryNode(string path, bool isRecursive = true) : base(path) {
+        var directoryInfo = new DirectoryInfo(path);
+        _lastModified = directoryInfo.LastWriteTime;
+        if (isRecursive) {
+            UpdateChildren();
+        }
+    }
+
+    public void UpdateChildren(bool isRecursive = false) {
+        if (!Directory.Exists(Path)) {
+            Logger.Warning($"Directory no longer exists: {Path}");
+            Children = [];
+            return;
+        }
+
+        try {
+            IEnumerable<BaseNode> directories = Directory.GetDirectories(Path)
+                .Select(dirPath => new DirectoryNode(dirPath, isRecursive) { _parent = this });
+            IEnumerable<BaseNode> files = Directory.GetFiles(Path)
+                .Select(filePath => new FileNode(filePath) { Parent = this });
+            Children = [.. directories.Concat(files)];
+            Logger.Debug($"Fetched {Children.Length} children for directory: {Path}");
+        } catch (UnauthorizedAccessException) {
+            Logger.Warning($"Access denied to directory: {Path}");
+            Children = [];
+        } catch (Exception ex) {
+            Logger.Error($"Error accessing directory {Path}", ex);
+            Children = [];
+        }
+
+        OnPropertyChanged(nameof(Children));
+    }
+
+    partial void OnIsExpandedChanged(bool value) {
+        Logger.Debug($"OnIsExpandedChanged: {value}");
+        if (value) {
+            UpdateChildren(true);
+        }
+    }
+
+    [ObservableProperty] private ImmutableArray<BaseNode> _children = [];
+    [ObservableProperty] private bool _isExpanded;
+
+    private readonly DateTime _lastModified;
+
+    public override string Type => "Folder";
+    public override string FormattedSize => "—";
+    public override string LastModified => $"{_lastModified:yyyy-MM-dd HH:mm}";
+    public override string DirectoryName => System.IO.Path.GetFileName(Path);
+
+    public override byte[] Icon => "📁"u8.ToArray();
+
+    public DirectoryNode? Parent {
+        get => _parent ??= ResolveParent();
+    }
+
+    private DirectoryNode? ResolveParent() {
+        var parentDir = Directory.GetParent(Path);
+        return parentDir == null ? null : new DirectoryNode(parentDir.FullName, false);
+    }
+
+    private DirectoryNode? _parent;
+}
+
