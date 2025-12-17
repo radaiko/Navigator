@@ -5,7 +5,6 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
              xmlns:nodes="clr-namespace:Navigator.UI.Models.Nodes"
              xmlns:viewModels="clr-namespace:Navigator.UI.ViewModels"
-             xmlns:converters="clr-namespace:Navigator.UI.Converters"
              x:Class="Navigator.UI.Views.FileWindowTabView"
              x:DataType="viewModels:FileWindowTabViewModel"
              d:DataContext="{d:DesignInstance Type=viewModels:FileWindowTabViewModel, IsDesignTimeCreatable=False}">
@@ -127,7 +126,7 @@
                           VerticalAlignment="Center"
                           Margin="12,0">
                         <TextBlock Grid.Column="0"
-                                   Text="Icon"
+                                   Text=""
                                    Foreground="{StaticResource AppTextSecondary}"
                                    FontSize="12"
                                    FontWeight="SemiBold"
@@ -256,10 +255,25 @@
                 BorderThickness="0,1,0,0"
                 Height="16"
                 Padding="12,0">
-            <TextBlock Foreground="{StaticResource AppTextSecondary}"
-                       FontSize="10"
-                       VerticalAlignment="Center"
-                       Text="Ready" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Foreground="{StaticResource AppTextSecondary}"
+                           FontSize="10"
+                           VerticalAlignment="Center"
+                           Text="Ready" />
+
+                <TextBlock Grid.Column="1"
+                           Foreground="{StaticResource AppTextSecondary}"
+                           FontSize="10"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Right"
+                           Margin="12,0,0,0"
+                           Text="{Binding Root.ActualNode.FormattedCounts, Mode=OneWay}" />
+            </Grid>
         </Border>
     </Grid>
 </UserControl>

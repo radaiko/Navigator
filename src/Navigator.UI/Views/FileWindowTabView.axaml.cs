@@ -12,7 +12,11 @@ public partial class FileWindowTabView : UserControl {
     }
 
     public FileWindowTabView(FileWindowTab model) : this() {
-        DataContext = new FileWindowTabViewModel(model);
+        // Use the ViewModel instance already created by the model instead of
+        // creating a second ViewModel. This ensures bindings that reference
+        // "ViewModel" on the model (e.g. ViewModel.CurrentFolderName) observe
+        // the same object that the view updates.
+        DataContext = model.ViewModel;
     }
 
     private void BaseNode_DoubleTapped(object? sender, TappedEventArgs e) {
@@ -21,4 +25,3 @@ public partial class FileWindowTabView : UserControl {
         }
     }
 }
-

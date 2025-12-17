@@ -12,11 +12,6 @@ public class FileNode : BaseNode {
         _size = fileInfo.Length;
         _lastModified = fileInfo.LastWriteTime;
         Type = fileInfo.Extension.ToUpper().TrimStart('.') + " File";
-
-        try {
-            FileExtensions.IconUpdated += OnIconUpdated;
-        } catch {
-        }
     }
 
     private void OnIconUpdated(string updatedPath) {
@@ -45,5 +40,8 @@ public class FileNode : BaseNode {
     public override string LastModified => $"{_lastModified:yyyy-MM-dd HH:mm}";
     public DirectoryNode? Parent { get; internal set; }
     public override string DirectoryName => Parent?.Name ?? System.IO.Path.GetFileName(System.IO.Path.GetDirectoryName(Path)) ?? "";
-}
 
+    // Public accessors for sorting
+    public long Size => _size;
+    public DateTime LastModifiedDate => _lastModified;
+}

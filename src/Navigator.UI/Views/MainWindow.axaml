@@ -127,7 +127,7 @@
                             <TextBlock Text="×" FontSize="12" TextAlignment="Center" VerticalAlignment="Center" />
                         </Button>
                         <!-- TODO: fix the binding problem here -->
-                        <TextBlock Text="{Binding ViewModel.SelectedTreeNode.DirectoryName}"
+                        <TextBlock Text="{Binding ViewModel.CurrentFolderName}"
                                    VerticalAlignment="Center"
                                    Height="12"
                                    FontSize="12"

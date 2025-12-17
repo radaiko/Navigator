@@ -27,6 +27,12 @@ public partial class RootFolders : ObservableObject {
         var normalizedPath = NormalizePath(path);
         var targetNode = TraverseToPath(normalizedPath);
 
+        if (!Path.Exists(normalizedPath))
+        {
+            Logger.Debug($"Path '{normalizedPath}' does not exist.");
+            return;
+        }
+
         if (ActualNode.Path == targetNode.Path && !ignoreHistory) {
             Logger.Debug($"Ignoring navigation to same path: {targetNode.Path}");
             return;

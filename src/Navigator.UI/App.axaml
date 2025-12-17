@@ -30,6 +30,7 @@
         <SolidColorBrush x:Key="AppSelectedText" Color="{StaticResource DarkSelectedText}" />
 
         <converters:DirectoryNodeFilterConverter x:Key="DirectoryNodeFilter" />
+        <!-- DirectoryCountsConverter removed; DirectoryNode provides FormattedCounts property -->
 
         <!-- navigation styles moved into Application.Styles (see below) -->
 
