@@ -31,10 +31,12 @@ public class BaseNode : ObservableObject {
 
     public Bitmap Icon => IconProvider.GetIcon(this);
 
+    // New property used by XAML to distinguish folders from files
+    public virtual bool IsDirectory => false;
+
     public virtual string Type => "";
     public virtual string FormattedSize => "";
     public virtual string LastModified => "";
     public virtual ImmutableArray<BaseNode> Children => [];
     public virtual string DirectoryName => "";
 }
-

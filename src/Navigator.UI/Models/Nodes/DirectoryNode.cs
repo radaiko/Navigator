@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.IO;
-using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Navigator.UI.Utils;
 
@@ -77,6 +73,9 @@ public partial class DirectoryNode : BaseNode {
     public override string FormattedSize => "—";
     public override string LastModified => $"{_lastModified:yyyy-MM-dd HH:mm}";
     public override string DirectoryName => System.IO.Path.GetFileName(Path);
+
+    // New override for IsDirectory
+    public override bool IsDirectory => true;
 
     public DirectoryNode? Parent {
         get => _parent ??= ResolveParent();

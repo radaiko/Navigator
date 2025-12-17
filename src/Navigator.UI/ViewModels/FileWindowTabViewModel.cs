@@ -1,5 +1,6 @@
 using System.Collections.Immutable;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Navigator.UI.Models;
@@ -15,6 +16,9 @@ public partial class FileWindowTabViewModel : ViewModelBase {
     [ObservableProperty] private ImmutableArray<BaseNode> _currentNodeChildren = [];
 
     [ObservableProperty] private string _currentFolderName = string.Empty;
+
+    // New selected node set when user right-clicks an item
+    [ObservableProperty] private BaseNode? _selectedNode;
 
     private readonly FileWindowTab _model;
     #endregion
@@ -70,6 +74,70 @@ public partial class FileWindowTabViewModel : ViewModelBase {
     private void RefreshClicked() {
         Root.Refresh();
         LogDebug("Refresh clicked");
+    }
+
+    [RelayCommand]
+    private void HomeClicked() {
+        Root.GoHome();
+        LogDebug("Home clicked");
+    }
+
+    [RelayCommand]
+    private void NewFolderClicked()
+    {
+        Root.CreateNewFolder();
+    }
+
+    // Context menu commands
+    [RelayCommand]
+    private void Open(BaseNode node) {
+        if (node is DirectoryNode d) {
+            Root.GoToPath(d.Path);
+            LogDebug($"ContextMenu Open -> navigated to folder: {d.Path}");
+            return;
+        }
+
+        // TODO: implement file opening with registered handler
+        LogDebug($"Open file requested: {node.Path}");
+    }
+
+    [RelayCommand]
+    private void CopyPath(BaseNode node) {
+        // For now just log the path. Platform clipboard access can be added via a service.
+        LogDebug($"CopyPath requested: {node.Path}");
+    }
+
+    [RelayCommand]
+    private void NewFolder() {
+        Root.CreateNewFolder();
+    }
+
+    [RelayCommand]
+    private void Delete(BaseNode node) {
+        try {
+            if (node is DirectoryNode) {
+                System.IO.Directory.Delete(node.Path, true);
+            } else {
+                System.IO.File.Delete(node.Path);
+            }
+
+            Root.Refresh();
+            LogDebug($"Deleted node: {node.Path}");
+        } catch (Exception ex) {
+            Logger.Error($"Failed to delete node: {node.Path}", ex);
+        }
+    }
+
+    [RelayCommand]
+    private void Rename(BaseNode node) {
+        // TODO: show rename dialog. For now log and refresh
+        LogDebug($"Rename requested for: {node.Path}");
+    }
+
+    [RelayCommand]
+    private void Properties(BaseNode node) {
+        // TODO: show properties dialog
+        LogDebug($"Properties requested for: {node.Path}");
     }
     #endregion
 

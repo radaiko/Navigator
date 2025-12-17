@@ -69,6 +69,38 @@ public partial class RootFolders : ObservableObject {
     public void Refresh() {
         Logger.Debug($"Refreshing node: {ActualNode.Path}");
         ActualNode.UpdateChildren();
+        OnPropertyChanged(nameof(ActualNode));
+    }
+
+    public void CreateNewFolder()
+    {
+        try
+        {
+            Directory.CreateDirectory(GetNewFolderPath());
+        }
+        catch (Exception ex)
+        {
+            Logger.Error($"Error creating new folder in {ActualNode.Path}", ex);
+        }
+        Refresh();
+    }
+
+    public void GoHome()
+    {
+        var homePath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+        GoToPath(homePath);
+    }
+
+    private string GetNewFolderPath(int count = 0)
+    {
+        var newFolderPath = Path.Combine(ActualNode.Path, "New Folder");
+        if (count > 0) newFolderPath += $" ({count})";
+        if (Directory.Exists(newFolderPath))
+        {
+            newFolderPath = GetNewFolderPath(count + 1);
+        }
+
+        return newFolderPath;
     }
 
     private string NormalizePath(string path) {
@@ -96,7 +128,7 @@ public partial class RootFolders : ObservableObject {
             return TopLevel;
         }
 
-        var segments = path.Split(System.IO.Path.DirectorySeparatorChar, System.IO.Path.AltDirectorySeparatorChar)
+        var segments = path.Split(Path.DirectorySeparatorChar, System.IO.Path.AltDirectorySeparatorChar)
             .Where(s => !string.IsNullOrWhiteSpace(s)).ToArray();
 
         DirectoryNode currentNode = TopLevel;
@@ -104,6 +136,20 @@ public partial class RootFolders : ObservableObject {
             var nextNode = currentNode.Children
                 .OfType<DirectoryNode>()
                 .FirstOrDefault(n => string.Equals(n.Name, segment, StringComparison.OrdinalIgnoreCase));
+
+            if (nextNode == null) {
+                // Attempt to refresh the current node's children in case they are stale
+                try {
+                    currentNode.UpdateChildren();
+                } catch (Exception ex) {
+                    Logger.Warning($"Failed to update children for '{currentNode.Path}' while traversing: {ex.Message}");
+                }
+
+                // Retry lookup after refresh
+                nextNode = currentNode.Children
+                    .OfType<DirectoryNode>()
+                    .FirstOrDefault(n => string.Equals(n.Name, segment, StringComparison.OrdinalIgnoreCase));
+            }
 
             if (nextNode == null) {
                 Logger.Warning($"Segment '{segment}' not found under '{currentNode.Path}' while traversing '{path}'");

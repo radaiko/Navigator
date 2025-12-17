@@ -5,9 +5,14 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
              xmlns:nodes="clr-namespace:Navigator.UI.Models.Nodes"
              xmlns:viewModels="clr-namespace:Navigator.UI.ViewModels"
+             xmlns:converters="clr-namespace:Navigator.UI.Utils.Converters"
              x:Class="Navigator.UI.Views.FileWindowTabView"
              x:DataType="viewModels:FileWindowTabViewModel"
              d:DataContext="{d:DesignInstance Type=viewModels:FileWindowTabViewModel, IsDesignTimeCreatable=False}">
+
+    <UserControl.Resources>
+        <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+    </UserControl.Resources>
 
 <Grid RowDefinitions="Auto,*,Auto" Background="{StaticResource AppBackground}">
         <!-- Top Navigation Bar -->
@@ -17,7 +22,7 @@
                 BorderThickness="0,0,0,1"
                 Padding="4,0,4,0"
                 Height="32">
-            <Grid ColumnDefinitions="Auto,Auto,Auto,Auto,8,*" VerticalAlignment="Center" Margin="0">
+            <Grid ColumnDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,8,*" VerticalAlignment="Center" Margin="0">
                 <!-- Navigation Buttons -->
                 <Button Grid.Column="0"
                         Classes="NavigationButton"
@@ -42,10 +47,20 @@
                         ToolTip.Tip="Refresh (F5)"
                         Content="↻"
                         Command="{Binding RefreshClickedCommand}"/>
+                <Button Grid.Column="4"
+                        Classes="NavigationButton"
+                        ToolTip.Tip="Home"
+                        Content="🏠"
+                        Command="{Binding HomeClickedCommand}"/>
+                <Button Grid.Column="5"
+                        Classes="NavigationButton"
+                        ToolTip.Tip="New Folder"
+                        Content="📁+"
+                        Command="{Binding NewFolderClickedCommand}"/>
 
                 <!-- Path TextBox -->
                 <TextBox
-                    Grid.Column="5"
+                    Grid.Column="7"
                     Text="{Binding Root.ActualNode.Path, Mode=OneWay}"
                     IsReadOnly="True"
                     Height="24"
@@ -169,8 +184,14 @@
                 <!-- File List ScrollViewer -->
                 <ScrollViewer Grid.Row="1"
                               Background="{StaticResource AppBackground}"
-                              Padding="0"
-                              >
+                              Padding="0">
+
+                    <ScrollViewer.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="New Folder" Click="ContextMenu_NewFolder_Empty_Click" />
+                        </ContextMenu>
+                    </ScrollViewer.ContextMenu>
+
                     <ItemsControl ItemsSource="{Binding CurrentNodeChildren}"
                                   Padding="0"
                                   Margin="0">
@@ -189,7 +210,21 @@
                                     Height="40"
                                     Background="Transparent"
                                     Cursor="Hand"
-                                    DoubleTapped="BaseNode_DoubleTapped">
+                                    DoubleTapped="BaseNode_DoubleTapped"
+                                    PointerPressed="BaseNode_PointerPressed">
+
+                                    <Border.ContextMenu>
+                                        <ContextMenu>
+                                            <MenuItem Header="Open" Click="ContextMenu_Open_Click" />
+                                            <MenuItem Header="Open in New Tab" IsVisible="{Binding IsDirectory}" Click="ContextMenu_OpenInNewTab_Click" />
+                                            <MenuItem Header="New Folder" IsVisible="{Binding IsDirectory}" Click="ContextMenu_NewFolder_Click" />
+                                            <MenuItem Header="Rename" Click="ContextMenu_Rename_Click" />
+                                            <MenuItem Header="Delete" Click="ContextMenu_Delete_Click" />
+                                            <MenuItem Header="Copy Path" Click="ContextMenu_CopyPath_Click" />
+                                            <MenuItem Header="Properties" Click="ContextMenu_Properties_Click" />
+                                        </ContextMenu>
+                                    </Border.ContextMenu>
+
                                     <Grid ColumnDefinitions="48,*,120,100,140"
                                           VerticalAlignment="Center"
                                           Margin="6,0"
