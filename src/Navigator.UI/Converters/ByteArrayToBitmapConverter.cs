@@ -13,7 +13,7 @@ namespace Navigator.UI.Converters {
     public class ByteArrayToBitmapConverter : IValueConverter {
         public static readonly ByteArrayToBitmapConverter Instance = new ByteArrayToBitmapConverter();
 
-        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture) {
+        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo? culture) {
             try {
                 if (value is byte[] bytes && bytes.Length > 0) {
                     try {
@@ -27,15 +27,21 @@ namespace Navigator.UI.Converters {
                         if (string.IsNullOrEmpty(text))
                             return null;
 
-                        const int px = 24;
+                        // Render a larger canvas for emoji so the resulting Bitmap is big enough when shown in the UI.
+                        // This avoids the icon looking tiny; keep some left padding to prevent left-side clipping.
+                        const int px = 128;
                         var tb = new TextBlock {
                             Text = text,
-                            FontSize = 16,
+                            FontSize = 96,
                             Foreground = Brushes.Black,
                             TextAlignment = TextAlignment.Center,
                             VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
                             HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center
                         };
+
+                        // Shift right a little to account for emoji glyphs that draw left of the origin.
+                        tb.Padding = new Thickness(12, 0, 0, 0);
+                        tb.Margin = new Thickness(0);
 
                         try {
                             if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX)) {
@@ -66,4 +72,3 @@ namespace Navigator.UI.Converters {
         }
     }
 }
-

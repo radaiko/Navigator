@@ -1,5 +1,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.Immutable;
+using Avalonia.Media.Imaging;
+using Navigator.UI.Utils;
 
 namespace Navigator.UI.Models.Nodes;
 
@@ -27,11 +29,12 @@ public class BaseNode : ObservableObject {
     public string Name { get; }
     public string Path { get; }
 
+    public Bitmap Icon => IconProvider.GetIcon(this);
+
     public virtual string Type => "";
     public virtual string FormattedSize => "";
     public virtual string LastModified => "";
     public virtual ImmutableArray<BaseNode> Children => [];
     public virtual string DirectoryName => "";
-    public virtual byte[] Icon => System.Array.Empty<byte>();
 }
 

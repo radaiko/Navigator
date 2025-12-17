@@ -7,7 +7,6 @@
         xmlns:models="clr-namespace:Navigator.UI.Models"
         mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="600"
         x:Class="Navigator.UI.Views.MainWindow"
-        Icon="/Assets/navigator.ico"
         Title="Navigator"
         Width="1200"
         Height="700"
@@ -22,12 +21,213 @@
     </Design.DataContext>
 
     <Window.Resources>
-        <conv:OSPlatformConverter x:Key="OsPlatformConverter" />
+        <conv:PlatformIconConverter x:Key="PlatformIconConverter" />
+        <conv:OSPlatformConverter x:Key="OSPlatformConverter" />
     </Window.Resources>
 
+    <!-- Choose .icns on macOS and .ico otherwise -->
+    <Window.Icon>
+        <Binding Converter="{StaticResource PlatformIconConverter}" ConverterParameter="mac:/Assets/navigator.icns;default:/Assets/navigator.ico" />
+    </Window.Icon>
+
     <Grid RowDefinitions="24,*">
-        <!-- ... original content omitted for brevity; kept in real file -->
+        <!-- Custom Title Bar with Tabs and Window Controls -->
+        <Grid Grid.Row="0" Background="{StaticResource AppBackgroundSecondary}" ColumnDefinitions="Auto,*,Auto">
+            <!-- Window Control Buttons - macOS Style (Red, Yellow, Green) on LEFT -->
+            <StackPanel Grid.Column="0"
+                        Orientation="Horizontal"
+                        Spacing="8"
+                        VerticalAlignment="Center"
+                        Margin="8,0,8,0"
+                        IsVisible="{Binding Converter={StaticResource OSPlatformConverter}, ConverterParameter=macOS}">
+                <!-- Close Button (Red) -->
+                <Button Width="12" Height="12"
+                        Padding="0" Margin="0"
+                        Background="#EF5350"
+                        BorderThickness="0"
+                        Click="OnCloseClicked"
+                        ToolTip.Tip="Close"
+                        Classes="MacOSWindowButton"
+                        CornerRadius="6" />
+
+                <!-- Minimize Button (Yellow) -->
+                <Button Width="12" Height="12"
+                        Padding="0" Margin="0"
+                        Background="#FFCA28"
+                        BorderThickness="0"
+                        Click="OnMinimizeClicked"
+                        ToolTip.Tip="Minimize"
+                        Classes="MacOSWindowButton"
+                        CornerRadius="6" />
+
+                <!-- Maximize Button (Green) -->
+                <Button Width="12" Height="12"
+                        Padding="0" Margin="0"
+                        Background="#66BB6A"
+                        BorderThickness="0"
+                        Click="OnMaximizeClicked"
+                        ToolTip.Tip="Maximize"
+                        Classes="MacOSWindowButton"
+                        CornerRadius="6" />
+            </StackPanel>
+
+            <!-- Title bar drag area and tabs -->
+            <DockPanel Grid.Column="1" LastChildFill="False">
+                <!-- Tabs Container -->
+                <TabControl DockPanel.Dock="Left"
+                            ItemsSource="{Binding Tabs}"
+                            SelectedItem="{Binding SelectedTab}"
+                            Background="Transparent"
+                            Foreground="{StaticResource AppText}"
+                            Padding="0"
+                            MaxWidth="800">
+            <TabControl.Styles>
+                <Style Selector="TabControl">
+                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="Margin" Value="0" />
+                    <Setter Property="Height" Value="24" />
+                </Style>
+                <Style Selector="TabItem">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="Foreground" Value="{StaticResource AppText}" />
+                    <Setter Property="Padding" Value="12, 0, 0,0" />
+                    <Setter Property="Margin" Value="0,0" />
+                    <Setter Property="BorderBrush" Value="Transparent" />
+                    <Setter Property="BorderThickness" Value="0,0,1,0" />
+                    <Setter Property="FontSize" Value="12" />
+                    <Setter Property="Height" Value="24" />
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                </Style>
+                <Style Selector="TabItem:pointerover">
+                    <Setter Property="Background" Value="{StaticResource AppHoverBackground}" />
+                </Style>
+                <Style Selector="TabItem:selected">
+                    <Setter Property="Background" Value="{StaticResource AppAccent}" />
+                    <Setter Property="Foreground" Value="{StaticResource AppSelectedText}" />
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="Margin" Value="0" />
+                </Style>
+            </TabControl.Styles>
+            <TabControl.ItemTemplate>
+                <DataTemplate DataType="models:FileWindowTab">
+                    <DockPanel LastChildFill="False" Height="24" VerticalAlignment="Center">
+                        <Button DockPanel.Dock="Right"
+                                Width="24"
+                                Height="24"
+                                Padding="0"
+                                Margin="4,2,0,0"
+                                Background="Transparent"
+                                Foreground="{StaticResource AppText}"
+                                BorderThickness="0"
+                                Click="OnCloseTabClicked"
+                                Tag="{Binding }"
+                                ToolTip.Tip="Close Tab"
+                                Classes="TabCloseButton"
+                                VerticalAlignment="Bottom">
+                            <TextBlock Text="×" FontSize="12" TextAlignment="Center" VerticalAlignment="Center" />
+                        </Button>
+                        <!-- TODO: fix the binding problem here -->
+                        <TextBlock Text="{Binding ViewModel.SelectedTreeNode.DirectoryName}"
+                                   VerticalAlignment="Center"
+                                   Height="12"
+                                   FontSize="12"
+                                   Margin="0,2,4,0" />
+                    </DockPanel>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+        </TabControl>
+        </DockPanel>
+
+        <!-- Window Control Buttons - Windows/Linux Style (Standard) on RIGHT -->
+        <StackPanel Grid.Column="2"
+                    Orientation="Horizontal"
+                    Spacing="0"
+                    VerticalAlignment="Top">
+            <!-- Minimize Button -->
+            <Button Width="36" Height="36"
+                    Padding="0" Margin="0"
+                    Background="Transparent"
+                    Foreground="{StaticResource AppText}"
+                    BorderThickness="0"
+                    Click="OnMinimizeClicked"
+                    ToolTip.Tip="Minimize"
+                    Classes="WindowControlButton"
+                    IsVisible="{Binding Converter={StaticResource OSPlatformConverter}, ConverterParameter=Windows, FallbackValue=true}">
+                <TextBlock Text="−" FontSize="16" TextAlignment="Center" VerticalAlignment="Center" FontWeight="Light"/>
+            </Button>
+
+            <!-- Maximize Button -->
+            <Button Width="36" Height="36"
+                    Padding="0" Margin="0"
+                    Background="Transparent"
+                    Foreground="{StaticResource AppText}"
+                    BorderThickness="0"
+                    Click="OnMaximizeClicked"
+                    ToolTip.Tip="Maximize"
+                    Classes="WindowControlButton"
+                    IsVisible="{Binding Converter={StaticResource OSPlatformConverter}, ConverterParameter=Windows, FallbackValue=true}">
+                <TextBlock Text="☐" FontSize="14" TextAlignment="Center" VerticalAlignment="Center"/>
+            </Button>
+
+            <!-- Close Button -->
+            <Button Width="36" Height="36"
+                    Padding="0" Margin="0"
+                    Background="Transparent"
+                    Foreground="{StaticResource AppText}"
+                    BorderThickness="0"
+                    Click="OnCloseClicked"
+                    ToolTip.Tip="Close"
+                    Classes="WindowControlButton CloseButton"
+                    IsVisible="{Binding Converter={StaticResource OSPlatformConverter}, ConverterParameter=Windows, FallbackValue=true}">
+                <TextBlock Text="✕" FontSize="14" TextAlignment="Center" VerticalAlignment="Center"/>
+            </Button>
+
+            <!-- Linux Minimize Button -->
+            <Button Width="36" Height="36"
+                    Padding="0" Margin="0"
+                    Background="Transparent"
+                    Foreground="{StaticResource AppText}"
+                    BorderThickness="0"
+                    Click="OnMinimizeClicked"
+                    ToolTip.Tip="Minimize"
+                    Classes="WindowControlButton"
+                    IsVisible="{Binding Converter={StaticResource OSPlatformConverter}, ConverterParameter=Linux}">
+                <TextBlock Text="−" FontSize="16" TextAlignment="Center" VerticalAlignment="Center" FontWeight="Light"/>
+            </Button>
+
+            <!-- Linux Maximize Button -->
+            <Button Width="36" Height="36"
+                    Padding="0" Margin="0"
+                    Background="Transparent"
+                    Foreground="{StaticResource AppText}"
+                    BorderThickness="0"
+                    Click="OnMaximizeClicked"
+                    ToolTip.Tip="Maximize"
+                    Classes="WindowControlButton"
+                    IsVisible="{Binding Converter={StaticResource OSPlatformConverter}, ConverterParameter=Linux}">
+                <TextBlock Text="☐" FontSize="14" TextAlignment="Center" VerticalAlignment="Center"/>
+            </Button>
+
+            <!-- Linux Close Button -->
+            <Button Width="36" Height="36"
+                    Padding="0" Margin="0"
+                    Background="Transparent"
+                    Foreground="{StaticResource AppText}"
+                    BorderThickness="0"
+                    Click="OnCloseClicked"
+                    ToolTip.Tip="Close"
+                    Classes="WindowControlButton CloseButton"
+                    IsVisible="{Binding Converter={StaticResource OSPlatformConverter}, ConverterParameter=Linux}">
+                <TextBlock Text="✕" FontSize="14" TextAlignment="Center" VerticalAlignment="Center"/>
+            </Button>
+        </StackPanel>
+        </Grid>
+
+        <!-- Main Content Area -->
+        <Grid Grid.Row="1" Background="{StaticResource AppBackground}">
+            <ContentControl Content="{Binding SelectedTab.ContentControl}" />
+        </Grid>
     </Grid>
 
-</Window>
 
+</Window>

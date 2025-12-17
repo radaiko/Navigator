@@ -7,8 +7,6 @@
     <!-- Shared resources and styles -->
 
     <Application.Resources>
-        <converters:DirectoryNodeFilterConverter x:Key="DirectoryNodeFilter" />
-
         <!-- Dark Mode Colors -->
         <Color x:Key="DarkBackground">#1e1e1e</Color>
         <Color x:Key="DarkBackgroundSecondary">#2d2d2d</Color>
@@ -30,6 +28,11 @@
         <SolidColorBrush x:Key="AppHoverBackground" Color="{StaticResource DarkHoverBackground}" />
         <SolidColorBrush x:Key="AppSelectedBackground" Color="{StaticResource DarkSelectedBackground}" />
         <SolidColorBrush x:Key="AppSelectedText" Color="{StaticResource DarkSelectedText}" />
+
+        <converters:DirectoryNodeFilterConverter x:Key="DirectoryNodeFilter" />
+
+        <!-- navigation styles moved into Application.Styles (see below) -->
+
     </Application.Resources>
 
     <Application.DataTemplates>
@@ -39,7 +42,21 @@
     <Application.Styles>
         <FluentTheme />
 
-        <!-- Shared styles omitted for brevity (kept from original) -->
+        <!-- Global Navigation button style: rounded, balanced padding and hover/pressed/focus visuals -->
+        <Style Selector="Button.NavigationButton">
+            <Setter Property="Background" Value="{StaticResource DarkBackgroundSecondary}" />
+            <Setter Property="Foreground" Value="{StaticResource AppText}" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="6" />
+            <Setter Property="Margin" Value="0,0,4,0" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="MinWidth" Value="36" />
+            <Setter Property="MinHeight" Value="36" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
     </Application.Styles>
 </Application>
 

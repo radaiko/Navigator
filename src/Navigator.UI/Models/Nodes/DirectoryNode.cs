@@ -67,8 +67,6 @@ public partial class DirectoryNode : BaseNode {
     public override string LastModified => $"{_lastModified:yyyy-MM-dd HH:mm}";
     public override string DirectoryName => System.IO.Path.GetFileName(Path);
 
-    public override byte[] Icon => "📁"u8.ToArray();
-
     public DirectoryNode? Parent {
         get => _parent ??= ResolveParent();
     }

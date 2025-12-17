@@ -13,7 +13,6 @@
     <PackageReference Include="Avalonia.Controls.DataGrid" Version="11.3.9" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.9" />
     <PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.9" />
-    <PackageReference Include="Avalonia.Markup.Xaml" Version="11.3.9" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
     <PackageReference Include="Radaiko.EasyLogger" Version="0.0.2" />
   </ItemGroup>

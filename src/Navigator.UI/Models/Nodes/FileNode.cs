@@ -45,7 +45,5 @@ public class FileNode : BaseNode {
     public override string LastModified => $"{_lastModified:yyyy-MM-dd HH:mm}";
     public DirectoryNode? Parent { get; internal set; }
     public override string DirectoryName => Parent?.Name ?? System.IO.Path.GetFileName(System.IO.Path.GetDirectoryName(Path)) ?? "";
-
-    public override byte[] Icon => File.GetIcon(Path) ?? Array.Empty<byte>();
 }
 

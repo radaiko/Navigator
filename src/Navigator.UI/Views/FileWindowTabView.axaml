@@ -10,12 +10,257 @@
              x:DataType="viewModels:FileWindowTabViewModel"
              d:DataContext="{d:DesignInstance Type=viewModels:FileWindowTabViewModel, IsDesignTimeCreatable=False}">
 
-    <UserControl.Resources>
-        <converters:ByteArrayToBitmapConverter x:Key="ByteArrayToBitmapConverter" />
-    </UserControl.Resources>
+<Grid RowDefinitions="Auto,*,Auto" Background="{StaticResource AppBackground}">
+        <!-- Top Navigation Bar -->
+        <Border Grid.Row="0"
+                Background="{StaticResource AppBackgroundSecondary}"
+                BorderBrush="{StaticResource AppBorder}"
+                BorderThickness="0,0,0,1"
+                Padding="4,0,4,0"
+                Height="32">
+            <Grid ColumnDefinitions="Auto,Auto,Auto,Auto,8,*" VerticalAlignment="Center" Margin="0">
+                <!-- Navigation Buttons -->
+                <Button Grid.Column="0"
+                        Classes="NavigationButton"
+                        ToolTip.Tip="Back (Alt+Left)"
+                        Content="←"
+                        Command="{Binding BackClickedCommand}"/>
 
-    <Grid RowDefinitions="Auto,*,Auto" Background="{StaticResource AppBackground}">
-        <!-- trimmed for brevity -->
+                <Button Grid.Column="1"
+                        Classes="NavigationButton"
+                        ToolTip.Tip="Forward (Alt+Right)"
+                        Content="→"
+                        Command="{Binding ForwardClickedCommand}"/>
+
+                <Button Grid.Column="2"
+                        Classes="NavigationButton"
+                        ToolTip.Tip="Up (Alt+Up)"
+                        Content="↑"
+                        Command="{Binding UpClickedCommand}"/>
+
+                <Button Grid.Column="3"
+                        Classes="NavigationButton"
+                        ToolTip.Tip="Refresh (F5)"
+                        Content="↻"
+                        Command="{Binding RefreshClickedCommand}"/>
+
+                <!-- Path TextBox -->
+                <TextBox
+                    Grid.Column="5"
+                    Text="{Binding Root.ActualNode.Path, Mode=OneWay}"
+                    IsReadOnly="True"
+                    Height="24"
+                    MinHeight="24"
+                    Margin="0"
+                    Padding="12,4 ,0 ,4"
+                    VerticalAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Foreground="{StaticResource AppTextSecondary}"
+                    FontSize="12" />
+            </Grid>
+        </Border>
+
+        <!-- Content Grid -->
+        <Grid Grid.Row="1" ColumnDefinitions="260,Auto,*">
+            <!-- Left Panel: TreeView for Folder Navigation -->
+            <Border Grid.Column="0"
+                    Background="{StaticResource AppBackgroundSecondary}"
+                    BorderBrush="{StaticResource AppBorder}"
+                    BorderThickness="0,0,0,0">
+                <TreeView ItemsSource="{Binding Root}"
+                          SelectedItem="{Binding Root.ActualNode, Mode=TwoWay}"
+                          Padding="0"
+                          Margin="0">
+                    <TreeView.Styles>
+                        <Style Selector="TreeViewItem" x:DataType="nodes:BaseNode">
+                            <Setter Property="IsExpanded" Value="{Binding IsExpanded}" />
+                            <Setter Property="Padding" Value="0,0,0,0" />
+                        </Style>
+                        <Style Selector="TreeViewItem /template/ ToggleButton">
+                            <Setter Property="Width" Value="10" />
+                            <Setter Property="Height" Value="10" />
+                            <Setter Property="Margin" Value="0,0,2,0" />
+                        </Style>
+                    </TreeView.Styles>
+                    <TreeView.ItemTemplate>
+                        <TreeDataTemplate x:DataType="nodes:BaseNode"
+                                          ItemsSource="{Binding Children, Converter={StaticResource DirectoryNodeFilter}}">
+                            <StackPanel Orientation="Horizontal"
+                                        Spacing="4"
+                                        Margin="0,4"
+                                        VerticalAlignment="Center">
+                                <TextBlock Text="{Binding Icon}"
+                                           FontSize="12"
+                                           Margin="0"
+                                           Padding="0"
+                                           VerticalAlignment="Center" />
+                                <TextBlock Text="{Binding Name}"
+                                           Foreground="{StaticResource AppText}"
+                                           FontSize="12"
+                                           Margin="0"
+                                           Padding="0"
+                                           VerticalAlignment="Center"
+                                           TextTrimming="CharacterEllipsis" />
+                            </StackPanel>
+                        </TreeDataTemplate>
+                    </TreeView.ItemTemplate>
+                </TreeView>
+            </Border>
+
+            <!-- Grid Splitter -->
+            <GridSplitter Grid.Column="1"
+                          Background="{StaticResource AppBorder}"
+                          ResizeDirection="Columns"
+                          Width="1"
+                          HorizontalAlignment="Center" />
+
+            <!-- Right Panel: File List -->
+            <Grid Grid.Column="2" RowDefinitions="Auto,*" Background="{StaticResource AppBackground}">
+                <!-- Column Headers -->
+                <Border Grid.Row="0"
+                        Background="{StaticResource AppBackgroundSecondary}"
+                        BorderBrush="{StaticResource AppBorder}"
+                        BorderThickness="0,0,0,1"
+                        Padding="0"
+                        Height="24">
+                    <Grid ColumnDefinitions="48,*,120,100,140"
+                          VerticalAlignment="Center"
+                          Margin="12,0">
+                        <TextBlock Grid.Column="0"
+                                   Text="Icon"
+                                   Foreground="{StaticResource AppTextSecondary}"
+                                   FontSize="12"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center" />
+                        <TextBlock Grid.Column="1"
+                                   Text="Name"
+                                   Foreground="{StaticResource AppTextSecondary}"
+                                   FontSize="12"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Center"
+                                   Margin="8,0,0,0" />
+                        <TextBlock Grid.Column="2"
+                                   Text="Size"
+                                   Foreground="{StaticResource AppTextSecondary}"
+                                   FontSize="12"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Right"
+                                   Margin="0,0,8,0" />
+                        <TextBlock Grid.Column="3"
+                                   Text="Type"
+                                   Foreground="{StaticResource AppTextSecondary}"
+                                   FontSize="12"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Right"
+                                   Margin="0,0,8,0" />
+                        <TextBlock Grid.Column="4"
+                                   Text="Modified"
+                                   Foreground="{StaticResource AppTextSecondary}"
+                                   FontSize="12"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Right"
+                                   Margin="0,0,8,0" />
+                    </Grid>
+                </Border>
+
+                <!-- File List ScrollViewer -->
+                <ScrollViewer Grid.Row="1"
+                              Background="{StaticResource AppBackground}"
+                              Padding="0"
+                              >
+                    <ItemsControl ItemsSource="{Binding CurrentNodeChildren}"
+                                  Padding="0"
+                                  Margin="0">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Spacing="0" Margin="0" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="nodes:BaseNode">
+                                <Border
+                                    x:Name="ItemBorder"
+                                    BorderThickness="0,0,0,1"
+                                    BorderBrush="{StaticResource AppBorder}"
+                                    Padding="0"
+                                    Height="40"
+                                    Background="Transparent"
+                                    Cursor="Hand"
+                                    DoubleTapped="BaseNode_DoubleTapped">
+                                    <Grid ColumnDefinitions="48,*,120,100,140"
+                                          VerticalAlignment="Center"
+                                          Margin="6,0"
+                                          Height="40">
+                                        <!-- Icon Column -->
+                                        <Image Grid.Column="0"
+                                               Width="36"
+                                               Height="28"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"
+                                               Stretch="Uniform"
+                                               Margin="0"
+                                               Source="{Binding Icon}" />
+                                        <!-- Name Column -->
+                                        <TextBlock Grid.Column="1"
+                                                   VerticalAlignment="Center"
+                                                   TextWrapping="NoWrap"
+                                                   TextTrimming="CharacterEllipsis"
+                                                   Text="{Binding Name}"
+                                                   Foreground="{StaticResource AppText}"
+                                                   FontSize="13"
+                                                   Margin="8,0,0,0" />
+
+                                        <!-- Size Column -->
+                                        <TextBlock Grid.Column="2"
+                                                   VerticalAlignment="Center"
+                                                   Text="{Binding FormattedSize}"
+                                                   Foreground="{StaticResource AppTextSecondary}"
+                                                   FontSize="12"
+                                                   HorizontalAlignment="Right"
+                                                   Margin="0,0,8,0" />
+
+                                        <!-- Type Column -->
+                                        <TextBlock Grid.Column="3"
+                                                   VerticalAlignment="Center"
+                                                   Text="{Binding Type}"
+                                                   Foreground="{StaticResource AppTextSecondary}"
+                                                   FontSize="12"
+                                                   HorizontalAlignment="Right"
+                                                   Margin="0,0,8,0" />
+
+                                        <!-- Modified Column -->
+                                        <TextBlock Grid.Column="4"
+                                                   VerticalAlignment="Center"
+                                                   Text="{Binding LastModified}"
+                                                   Foreground="{StaticResource AppTextSecondary}"
+                                                   FontSize="12"
+                                                   HorizontalAlignment="Right"
+                                                   Margin="0,0,8,0" />
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
+        </Grid>
+
+        <!-- Status Bar -->
+        <Border Grid.Row="2"
+                Background="{StaticResource AppBackgroundSecondary}"
+                BorderBrush="{StaticResource AppBorder}"
+                BorderThickness="0,1,0,0"
+                Height="16"
+                Padding="12,0">
+            <TextBlock Foreground="{StaticResource AppTextSecondary}"
+                       FontSize="10"
+                       VerticalAlignment="Center"
+                       Text="Ready" />
+        </Border>
     </Grid>
 </UserControl>
 
