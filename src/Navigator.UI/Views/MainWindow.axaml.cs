@@ -11,25 +11,7 @@ namespace Navigator.UI.Views;
 public partial class MainWindow : Window {
     public MainWindow() {
         InitializeComponent();
-        KeyDown += MainWindow_KeyDown;
         AddHandler(PointerPressedEvent, TitleBar_PointerPressed, handledEventsToo: true);
-    }
-
-    private void MainWindow_KeyDown(object? sender, KeyEventArgs e) {
-        if (e.KeyModifiers == KeyModifiers.Control && e.Key == Key.T) {
-            e.Handled = true;
-            AddNewTab();
-        } else if (e.KeyModifiers == KeyModifiers.Control && e.Key == Key.W) {
-            e.Handled = true;
-            CloseActiveTab();
-        }
-    }
-
-    private void AddNewTab() {
-        if (DataContext is MainWindowViewModel viewModel) {
-            var newTab = new FileWindowTab();
-            viewModel.AddTab(newTab);
-        }
     }
 
     private void OnCloseTabClicked(object? sender, Avalonia.Interactivity.RoutedEventArgs e) {
@@ -37,12 +19,6 @@ public partial class MainWindow : Window {
             if (DataContext is MainWindowViewModel viewModel) {
                 viewModel.CloseTab(tabItem);
             }
-        }
-    }
-
-    private void CloseActiveTab() {
-        if (DataContext is MainWindowViewModel { SelectedTab: { } selectedTab } viewModel) {
-            viewModel.CloseTab(selectedTab);
         }
     }
 

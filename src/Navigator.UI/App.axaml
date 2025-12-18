@@ -3,9 +3,20 @@
              x:Class="Navigator.UI.App"
              xmlns:local="using:Navigator.UI"
              xmlns:converters="using:Navigator.UI.Converters"
-             RequestedThemeVariant="Dark">
-    <!-- Shared resources and styles -->
+             RequestedThemeVariant="Dark"
+             Name="Navigator">
 
+    <!-- NativeMenu for macos and some linux distros -->
+    <NativeMenu.Menu>
+        <NativeMenu>
+            <NativeMenuItem Header="About This Application…" Click="OpenAboutDialog"/>
+            <NativeMenuItem Header="Check for Updates" Click="CheckForUpdates" />
+            <NativeMenuItem Header="Preferences…" Click="OpenSettingsTab" Gesture="Meta+,"/>
+            <!-- <NativeMenuItem Header="Quit" Click="CloseApplication" Gesture="Meta+Q" /> -->
+        </NativeMenu>
+    </NativeMenu.Menu>
+
+    <!-- Shared resources and styles -->
     <Application.Resources>
         <!-- Dark Mode Colors -->
         <Color x:Key="DarkBackground">#1e1e1e</Color>

@@ -11,13 +11,18 @@ public static class IconProvider {
     public static Bitmap GetIcon(BaseNode? node)
     {
         Logger.Debug($"GetIcon called: nodeType={(node == null ? "<null>" : node.GetType().Name)} path={(node == null ? "<null>" : node.Path)}");
+        if (node == null) {
+            Logger.Debug("GetIcon: node is null, returning default icon");
+            return GetDefaultIcon();
+        }
         if (node is DirectoryNode) {
             var dirIcon = GetDirectoryIcon();
-            Logger.Debug($"GetIcon returning directory icon for path={node.Path}");
+            Logger.Debug($"GetIcon returning directory icon for path={(node.Path ?? "<null>")}");
             return dirIcon;
         }
-        var fileIcon = GetFileIcon(node.Path);
-        Logger.Debug($"GetIcon returning file icon for path={node.Path}");
+        var path = node.Path ?? string.Empty;
+        var fileIcon = GetFileIcon(path);
+        Logger.Debug($"GetIcon returning file icon for path={path}");
         return fileIcon;
     }
 

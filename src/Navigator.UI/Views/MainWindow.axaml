@@ -20,6 +20,26 @@
         <vm:MainWindowViewModel />
     </Design.DataContext>
 
+    <NativeMenu.Menu>
+        <NativeMenu>
+            <NativeMenuItem Header="Edit" IsEnabled="true">
+                <NativeMenu>
+                    <NativeMenuItem Header="Cut" Command="{Binding CutCommand}" Gesture="Meta+X" />
+                    <NativeMenuItem Header="Copy" Command="{Binding CopyCommand}" Gesture="Meta+C" />
+                    <NativeMenuItem Header="Past" Command="{Binding PasteCommand}" Gesture="Meta+V" />
+                </NativeMenu>
+            </NativeMenuItem>
+            <NativeMenuItem Header="Tab" IsEnabled="true">
+                <NativeMenu>
+                    <NativeMenuItem Header="New Tab" Command="{Binding AddNewTabCommand}" Gesture="Meta+T" />
+                    <NativeMenuItem Header="Close Tab" Command="{Binding CloseActiveTabCommand}" Gesture="Meta+W" />
+                    <NativeMenuItem Header="Switch to next right tab" Command="{Binding SwitchToNextTabCommand}" Gesture="Meta+Right" />
+                    <NativeMenuItem Header="Switch to next left tab" Command="{Binding SwitchToPreviousTabCommand}" Gesture="Meta+Left" />
+                </NativeMenu>
+            </NativeMenuItem>
+        </NativeMenu>
+    </NativeMenu.Menu>
+
     <Window.Resources>
         <conv:PlatformIconConverter x:Key="PlatformIconConverter" />
         <conv:OSPlatformConverter x:Key="OSPlatformConverter" />
@@ -109,7 +129,7 @@
                 </Style>
             </TabControl.Styles>
             <TabControl.ItemTemplate>
-                <DataTemplate DataType="models:FileWindowTab">
+                <DataTemplate>
                     <DockPanel LastChildFill="False" Height="24" VerticalAlignment="Center">
                         <Button DockPanel.Dock="Right"
                                 Width="24"
@@ -126,8 +146,7 @@
                                 VerticalAlignment="Bottom">
                             <TextBlock Text="×" FontSize="12" TextAlignment="Center" VerticalAlignment="Center" />
                         </Button>
-                        <!-- TODO: fix the binding problem here -->
-                        <TextBlock Text="{Binding ViewModel.CurrentFolderName}"
+                        <TextBlock Text="{Binding ViewModel.TabName}"
                                    VerticalAlignment="Center"
                                    Height="12"
                                    FontSize="12"

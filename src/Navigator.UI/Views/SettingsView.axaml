@@ -1,0 +1,32 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Navigator.UI.Views.SettingsView">
+
+    <Grid RowDefinitions="Auto,Auto,Auto,*" ColumnDefinitions="Auto,*" Margin="12">
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Appearance" FontWeight="Bold" Margin="0,0,0,8" />
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Spacing="12">
+            <TextBlock VerticalAlignment="Center" Text="Dark theme" />
+            <ToggleSwitch IsChecked="{Binding IsDarkTheme}" />
+        </StackPanel>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Files" FontWeight="Bold" Margin="0,12,0,8" />
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Spacing="12">
+            <TextBlock VerticalAlignment="Center" Text="Show hidden files" />
+            <ToggleSwitch IsChecked="{Binding ShowHiddenFiles}" />
+        </StackPanel>
+
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Defaults" FontWeight="Bold" Margin="0,12,0,8" />
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Spacing="12">
+            <TextBlock VerticalAlignment="Center" Text="Default folder" />
+            <TextBox Width="300" Text="{Binding DefaultFolder, Mode=TwoWay}" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8" Margin="0,16,0,0">
+            <Button Content="Reset" Command="{Binding ResetCommand}" />
+            <Button Content="Save" Command="{Binding SaveCommand}" />
+        </StackPanel>
+    </Grid>
+</UserControl>
