@@ -6,10 +6,8 @@ using Avalonia.Threading;
 using Navigator.UI.Models;
 using Navigator.UI.ViewModels;
 using Navigator.UI.Views;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Reflection;
+using System.Linq.Expressions;
 
 namespace Navigator.UI;
 
@@ -21,11 +19,9 @@ public class App : Application {
         Logger.UseFile = true;
         Logger.Info("---- Application Started ----");
 
-        // Observe task scheduler unobserved exceptions so they don't become a process-level crash
-        TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
-
-        // Try to subscribe to an Avalonia dispatcher-level unhandled exception event if available
-        TrySubscribeToDispatcherUnhandledException();
+        // Observe AppDomain unhandled exceptions as a safety net (cannot always prevent termination,
+        // but will allow logging and showing a dialog when possible).
+        AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
         AvaloniaXamlLoader.Load(this);
     }
@@ -48,63 +44,19 @@ public class App : Application {
         base.OnFrameworkInitializationCompleted();
     }
 
-    private void TrySubscribeToDispatcherUnhandledException() {
+    private void CurrentDomain_UnhandledException(object? sender, UnhandledExceptionEventArgs e) {
         try {
-            // Use reflection to avoid compile-time dependency on a specific Avalonia API shape.
-            var uiThread = typeof(Dispatcher).GetProperty("UIThread", BindingFlags.Static | BindingFlags.Public)?.GetValue(null);
-            if (uiThread is not null) {
-                var evt = uiThread.GetType().GetEvent("UnhandledException");
-                if (evt is not null) {
-                    // Subscribe with a generic handler that will attempt to read Exception and Handled properties
-                    var handler = Delegate.CreateDelegate(evt.EventHandlerType!, this, nameof(DispatcherUnhandledExceptionBridge));
-                    evt.AddEventHandler(uiThread, handler);
-                    Logger.Debug("Subscribed to Dispatcher.UIThread.UnhandledException (via reflection)");
-                }
+            Exception ex = e.ExceptionObject as Exception ?? new Exception("Unknown AppDomain exception");
+            Logger.Error("AppDomain unhandled exception; IsTerminating=" + e.IsTerminating, ex);
+
+            // Try to show the exception on the UI thread. If the UI thread isn't available this may fail.
+            try {
+                Dispatcher.UIThread.Post(() => ShowExceptionWindow(ex));
+            } catch (Exception dispatchEx) {
+                Logger.Error("Failed to dispatch AppDomain exception to UI thread", dispatchEx);
             }
-        } catch (Exception ex) {
-            Logger.Warning("Failed to subscribe to Dispatcher unhandled exception via reflection: " + ex.Message);
-        }
-    }
-
-    // Bridge method used for dispatcher-level unhandled exceptions discovered via reflection.
-    // The actual args type may vary by Avalonia version; use reflection/dynamic to access Exception and Handled.
-    private void DispatcherUnhandledExceptionBridge(object? _, object args) {
-        try {
-            // Use dynamic-like reflection to extract Exception and Handled if present
-            var exProp = args.GetType().GetProperty("Exception") ?? args.GetType().GetProperty("InnerException");
-            var handledProp = args.GetType().GetProperty("Handled");
-            Exception? ex = null;
-            if (exProp is not null) {
-                ex = exProp.GetValue(args) as Exception;
-            }
-
-            if (ex is null) ex = new Exception("Unknown dispatcher exception");
-
-            Logger.Error("Dispatcher unhandled exception", ex);
-
-            // Mark handled if the event args exposes a Handled boolean property.
-            if (handledProp is not null && handledProp.PropertyType == typeof(bool) && handledProp.CanWrite) {
-                handledProp.SetValue(args, true);
-            }
-
-            // Show dialog on UI thread (we should already be on UI thread, but be safe)
-            Dispatcher.UIThread.Post(() => ShowExceptionWindow(ex));
-        } catch (Exception e) {
-            // If anything goes wrong here, log it but don't rethrow
-            Logger.Error("Error in DispatcherUnhandledExceptionBridge", e);
-        }
-    }
-
-    private void TaskScheduler_UnobservedTaskException(object? sender, UnobservedTaskExceptionEventArgs e) {
-        try {
-            Logger.Error("Unobserved task exception", e.Exception);
-            // Prevent further escalation
-            e.SetObserved();
-
-            // Show UI notification
-            Dispatcher.UIThread.Post(() => ShowExceptionWindow(e.Exception));
-        } catch (Exception ex) {
-            Logger.Error("Error handling UnobservedTaskException", ex);
+        } catch (Exception logEx) {
+            Logger.Error("Error in CurrentDomain_UnhandledException", logEx);
         }
     }
 
