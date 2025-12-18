@@ -19,62 +19,80 @@ public sealed class Json {
         internal readonly object? V;
         internal JsonVal(object? v) { V = v; }
 
-        /// <summary>Raw value as string if the underlying value is a string, or a culture-invariant representation of primitives; otherwise null.</summary>
-        public string? S {
+        /// <summary>Raw value as string if the underlying value is a string, or a culture-invariant representation of primitives; otherwise empty string.</summary>
+        public string S {
             get {
-                if (V == null) return null;
+                if (V == null) return string.Empty;
                 if (V is string s) return s;
                 if (V is bool || V is long || V is int || V is double || V is float || V is decimal)
-                    return Convert.ToString(V, CultureInfo.InvariantCulture);
-                return null;
-            }
-        }
-
-        /// <summary>Integer value when underlying value is an integer.</summary>
-        public long? I {
-            get {
-                if (V is long l) return l;
-                if (V is int i) return i;
-                if (V is double d && Math.Abs(Math.Floor(d) - d) < 0.001) return (long)d;
-                return null;
+                    return Convert.ToString(V, CultureInfo.InvariantCulture) ?? string.Empty;
+                return string.Empty;
             }
         }
 
         /// <summary>Floating point value when underlying value is numeric.</summary>
-        public double? D {
+        public double D {
             get {
                 if (V is double d) return d;
                 if (V is float f) return f;
-                if (V is long l) return (double)l;
-                if (V is int i) return (double)i;
-                return null;
+                if (V is long l) return l;
+                if (V is int i) return i;
+                return double.NaN;
             }
-        }
+         }
 
-        /// <summary>Boolean value when underlying value is boolean.</summary>
-        public bool? B => V is bool b ? b : null;
+        /// <summary>Boolean value when underlying value is boolean; returns false when missing.</summary>
+        public bool B => V is bool b ? b : false;
 
-        /// <summary>Returns the value as a <see cref="Json"/> object if it is an object.</summary>
-        public Json? O => V as Json;
+         /// <summary>Returns the value as a <see cref="Json"/> object if it is an object.</summary>
+         public Json? O => V as Json;
 
-        /// <summary>Returns the value as an array of <see cref="JsonVal"/> if underlying is an array.</summary>
-        public IList<JsonVal>? A {
-            get {
-                if (V is IList<object?> arr) {
-                    var list = new List<JsonVal>(arr.Count);
-                    foreach (var x in arr) list.Add(new JsonVal(x));
-                    return list;
-                }
-                return null;
-            }
-        }
+         /// <summary>Returns the value as an array of <see cref="JsonVal"/> if underlying is an array.</summary>
+         public IList<JsonVal>? A {
+             get {
+                 if (V is IList<object?> arr) {
+                     var list = new List<JsonVal>(arr.Count);
+                     foreach (var x in arr) list.Add(new JsonVal(x));
+                     return list;
+                 }
+                 return null;
+             }
+         }
 
-        /// <summary>Implicit conversion to string (returns S).</summary>
-        public static implicit operator string?(JsonVal? v) => v?.S;
+         /// <summary>Implicit conversion to string (returns S).</summary>
+         public static implicit operator string?(JsonVal? v) => v?.S;
 
-        /// <summary>String representation (falls back to raw ToString).</summary>
-        public override string? ToString() => S ?? V?.ToString();
-    }
+         /// <summary>String representation (falls back to raw ToString).</summary>
+         public override string ToString() => S;
+
+        // Convenience helpers for objects/arrays. S/D/B already have safe defaults.
+        public Json OOr(Json? defaultValue = null) => O ?? defaultValue ?? new Json();
+        public IList<JsonVal> AOr(IList<JsonVal>? defaultValue = null) => A ?? defaultValue ?? new List<JsonVal>();
+
+         /// <summary>Safe indexer for array-like values. Returns a JsonVal wrapper (may contain null) when index out of range or not an array.</summary>
+         public JsonVal this[int index] {
+             get {
+                 var arr = A;
+                 if (arr != null && index >= 0 && index < arr.Count) return arr[index];
+                 return new JsonVal(null);
+             }
+         }
+
+         /// <summary>Safe string indexer for object-like values (supports chaining: j["a"]["b"]). Returns a JsonVal wrapper (may contain null) when key missing or not an object.</summary>
+         public JsonVal this[string key] {
+             get {
+                 if (V is Json jo) {
+                    if (jo._map.TryGetValue(key, out var o)) return new JsonVal(o);
+                    return new JsonVal(null);
+                 }
+                 if (V is IDictionary<string, object?> dict) {
+                    if (dict.TryGetValue(key, out var o)) return new JsonVal(o);
+                    return new JsonVal(null);
+                 }
+                 return new JsonVal(null);
+             }
+         }
+     }
 
     /// <summary>
     /// Creates a new empty JSON object.
@@ -120,17 +138,15 @@ public sealed class Json {
     // Indexer: supports dot-separated nested access (e.g. "a.b.c")
     /// <summary>
     /// Gets or sets a value by a dot-separated path (e.g. "parent.child.name").
-    /// Getting returns the raw stored CLR value (string, long, double, bool, JSON, List&lt;object?&gt;, or null).
-    /// Setting will create intermediate objects if necessary.
+    /// Getting returns a lightweight <see cref="JsonVal"/> wrapper (never null). Setting will create intermediate objects if necessary.
     /// </summary>
     /// <param name="key">Dot-separated path to the value.</param>
-    public JsonVal? this[string key] {
+    public JsonVal this[string key] {
         get {
             var o = GetByPathObj(key);
-            if (o == null) return null;
             return new JsonVal(o);
         }
-        set => SetByPath(key, value?.V);
+        set => SetByPath(key, value.V);
     }
 
     /// <summary>
@@ -161,6 +177,39 @@ public sealed class Json {
             return false;
         }
     }
+
+    // Convenience getters that return default values when the path is missing or null.
+    public string GetString(string path, string defaultValue = "") {
+        var v = GetByPathObj(path);
+        if (v == null) return defaultValue;
+        var s = this[path].S;
+        return string.IsNullOrEmpty(s) ? defaultValue : s;
+    }
+
+    public long GetLong(string path, long defaultValue = 0) {
+        var v = GetByPathObj(path);
+        if (v == null) return defaultValue;
+        if (v is long l) return l;
+        if (v is int i) return i;
+        if (v is double d && Math.Abs(Math.Floor(d) - d) < 0.001) return (long)d;
+        if (v is string s && long.TryParse(s, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed)) return parsed;
+        return defaultValue;
+    }
+
+    public double GetDouble(string path, double defaultValue = 0.0) {
+        var v = GetByPathObj(path);
+        if (v == null) return defaultValue;
+        return this[path].D; // returns NaN if value isn't numeric
+    }
+
+    public bool GetBool(string path, bool defaultValue = false) {
+        var v = GetByPathObj(path);
+        if (v == null) return defaultValue;
+        return this[path].B; // returns false when underlying value is missing or not boolean
+    }
+
+    public Json GetObject(string path) => this[path].OOr();
+    public IList<JsonVal> GetArray(string path) => this[path].AOr();
 
     // Internal helper returns raw stored object at path (or null)
     private object? GetByPathObj(string path) {

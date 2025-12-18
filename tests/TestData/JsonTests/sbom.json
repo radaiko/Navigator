@@ -1,0 +1,1388 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "serialNumber": "urn:uuid:0684b230-3922-430b-96d2-600fc106fc10",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2025-12-18T12:59:37Z",
+    "tools": [
+      {
+        "vendor": "CycloneDX",
+        "name": "CycloneDX module for .NET",
+        "version": "5.5.0.0"
+      }
+    ],
+    "component": {
+      "type": "application",
+      "bom-ref": "Navigator@0.0.0",
+      "name": "Navigator",
+      "version": "0.0.0"
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "bom-ref": "pkg:nuget/Avalonia@11.3.9",
+      "authors": [
+        {
+          "name": "Avalonia Team"
+        }
+      ],
+      "name": "Avalonia",
+      "version": "11.3.9",
+      "description": "Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "A93325785A42C90CDC7FD3A659F0BF4D713973F51461768FAA67B4AE79759F2E4DBCAB9089FE9989035A9CE0C9C1FD0AD826EE919C6A6A439072820C102A8845"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "copyright": "Copyright 2013-2025 \u00A9 The AvaloniaUI Project",
+      "purl": "pkg:nuget/Avalonia@11.3.9",
+      "externalReferences": [
+        {
+          "url": "https://avaloniaui.net/?utm_source=nuget\u0026utm_medium=referral\u0026utm_content=project_homepage_link",
+          "type": "website"
+        },
+        {
+          "url": "https://github.com/AvaloniaUI/Avalonia/",
+          "type": "vcs"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:nuget/Avalonia.Angle.Windows.Natives@2.1.25547.20250602",
+      "authors": [
+        {
+          "name": "Avalonia Team"
+        }
+      ],
+      "name": "Avalonia.Angle.Windows.Natives",
+      "version": "2.1.25547.20250602",
+      "description": "Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "5CF4BA739C4FE0BF9E36AD2B4D481338239EA98216E6188F8C2F7AF5EFBDCB8926CE7D6AF2DF951071F8D9294D4D25CE1E52835F2BF4AC08C3DCEBA5E503AE60"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "name": "Unknown - See URL",
+            "url": "https://aka.ms/deprecateLicenseUrl"
+          }
+        }
+      ],
+      "copyright": "Copyright 2013-2025 \u00A9 The AvaloniaUI Project",
+      "purl": "pkg:nuget/Avalonia.Angle.Windows.Natives@2.1.25547.20250602",
+      "externalReferences": [
+        {
+          "url": "https://avaloniaui.net/",
+          "type": "website"
+        },
+        {
+          "url": "https://github.com/AvaloniaUI/angle/",
+          "type": "vcs"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:nuget/Avalonia.BuildServices@11.3.2",
+      "authors": [
+        {
+          "name": "Avalonia Team"
+        }
+      ],
+      "name": "Avalonia.BuildServices",
+      "version": "11.3.2",
+      "description": "Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "233F868E74AB91E56818004AD0AA7D0BB6E978044DDCF0061E373ADA06A1846B17A82E94C777AB907BA484C1873D2212B47D3539D2694E89A415F1AF047C3045"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "copyright": "Copyright 2023-2025 \u00A9 The AvaloniaUI Project",
+      "purl": "pkg:nuget/Avalonia.BuildServices@11.3.2",
+      "externalReferences": [
+        {
+          "url": "https://avaloniaui.net/",
+          "type": "website"
+        },
+        {
+          "url": "https://github.com/AvaloniaUI/Avalonia.BuildServices",
+          "type": "vcs"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:nuget/Avalonia.Controls.ColorPicker@11.3.9",
+      "authors": [
+        {
+          "name": "Avalonia Team"
+        }
+      ],
+      "name": "Avalonia.Controls.ColorPicker",
+      "version": "11.3.9",
+      "description": "Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "8EA77DFF9D0A4C8D0E41C437ADF4BB45D60C27A1C6E4EDB2B4CEEB6E1F09369F69788D6C47B11C6B8A761320718464B49505CA7EE2183B5C6D48158D361F63C0"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "copyright": "Copyright 2013-2025 \u00A9 The AvaloniaUI Project",
+      "purl": "pkg:nuget/Avalonia.Controls.ColorPicker@11.3.9",
+      "externalReferences": [
+        {
+          "url": "https://avaloniaui.net/?utm_source=nuget\u0026utm_medium=referral\u0026utm_content=project_homepage_link",
+          "type": "website"
+        },
+        {
+          "url": "https://github.com/AvaloniaUI/Avalonia/",
+          "type": "vcs"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:nuget/Avalonia.Controls.DataGrid@11.3.9",
+      "authors": [
+        {
+          "name": "Avalonia Team"
+        }
+      ],
+      "name": "Avalonia.Controls.DataGrid",
+      "version": "11.3.9",
+      "description": "Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "105E40D867DC6A0C16D062CBB22EAEE38956481ED9145F5CFE8C45EBF8B54886D6C320B9FDC05A16145F76E60B0AEE7CC9CD0D47BA527F961EA9CAC33603A9AB"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "copyright": "Copyright 2013-2025 \u00A9 The AvaloniaUI Project",
+      "purl": "pkg:nuget/Avalonia.Controls.DataGrid@11.3.9",
+      "externalReferences": [
+        {
+          "url": "https://avaloniaui.net/?utm_source=nuget\u0026utm_medium=referral\u0026utm_content=project_homepage_link",
+          "type": "website"
+        },
+        {
+          "url": "https://github.com/AvaloniaUI/Avalonia.Controls.DataGrid",
+          "type": "vcs"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:nuget/Avalonia.Desktop@11.3.9",
+      "authors": [
+        {
+          "name": "Avalonia Team"
+        }
+      ],
+      "name": "Avalonia.Desktop",
+      "version": "11.3.9",
+      "description": "Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "92C5CF43B931C191CD52573C8AF24DEAE1ECDAFDA51BA000905AF42EF6CCAFF9A514644B68C834FCD99538924219F17DC6CFE5B3DB9874DCA380D51B85BAD149"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "copyright": "Copyright 2013-2025 \u00A9 The AvaloniaUI Project",
+      "purl": "pkg:nuget/Avalonia.Desktop@11.3.9",
+      "externalReferences": [
+        {
+          "url": "https://avaloniaui.net/?utm_source=nuget\u0026utm_medium=referral\u0026utm_content=project_homepage_link",
+          "type": "website"
+        },
+        {
+          "url": "https://github.com/AvaloniaUI/Avalonia/",
+          "type": "vcs"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:nuget/Avalonia.Diagnostics@11.3.9",
+      "authors": [
+        {
+          "name": "Avalonia Team"
+        }
+      ],
+      "name": "Avalonia.Diagnostics",
+      "version": "11.3.9",
+      "description": "Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "A30EC7FC46290A34A60D11F17CCED4203812B530DDD545446EEC5EAE70B528F5E8C47A34A68D45887C278C66F32DA64237A68428C0D33B989470C028060DFACD"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "copyright": "Copyright 2013-2025 \u00A9 The AvaloniaUI Project",
+      "purl": "pkg:nuget/Avalonia.Diagnostics@11.3.9",
+      "externalReferences": [
+        {
+          "url": "https://avaloniaui.net/?utm_source=nuget\u0026utm_medium=referral\u0026utm_content=project_homepage_link",
+          "type": "website"
+        },
+        {
+          "url": "https://github.com/AvaloniaUI/Avalonia/",
+          "type": "vcs"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:nuget/Avalonia.Fonts.Inter@11.3.9",
+      "authors": [
+        {
+          "name": "Avalonia Team"
+        }
+      ],
+      "name": "Avalonia.Fonts.Inter",
+      "version": "11.3.9",
+      "description": "Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "19469ADC19B3CC85AC1C0DEEE3EECA5982280AA731BEF512D62707637D08538E2DB309190284A5E807F456B50785151A0D80933708D8853B2EFE7352A0011EB6"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "copyright": "Copyright 2013-2025 \u00A9 The AvaloniaUI Project",
+      "purl": "pkg:nuget/Avalonia.Fonts.Inter@11.3.9",
+      "externalReferences": [
+        {
+          "url": "https://avaloniaui.net/?utm_source=nuget\u0026utm_medium=referral\u0026utm_content=project_homepage_link",
+          "type": "website"
+        },
+        {
+          "url": "https://github.com/AvaloniaUI/Avalonia/",
+          "type": "vcs"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:nuget/Avalonia.FreeDesktop@11.3.9",
+      "authors": [
+        {
+          "name": "Avalonia Team"
+        }
+      ],
+      "name": "Avalonia.FreeDesktop",
+      "version": "11.3.9",
+      "description": "Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "825A9B5DFAFE4E8FC1C47217A5F58B1905BC554CFB25B0A71DCCAD098383067909F643981AE248E8ACF550336E1FD11DC1F273C7E65E4598356B67077EFAA2F0"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "copyright": "Copyright 2013-2025 \u00A9 The AvaloniaUI Project",
+      "purl": "pkg:nuget/Avalonia.FreeDesktop@11.3.9",
+      "externalReferences": [
+        {
+          "url": "https://avaloniaui.net/?utm_source=nuget\u0026utm_medium=referral\u0026utm_content=project_homepage_link",
+          "type": "website"
+        },
+        {
+          "url": "https://github.com/AvaloniaUI/Avalonia/",
+          "type": "vcs"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:nuget/Avalonia.Native@11.3.9",
+      "authors": [
+        {
+          "name": "Avalonia Team"
+        }
+      ],
+      "name": "Avalonia.Native",
+      "version": "11.3.9",
+      "description": "Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "4E475C045418AE8B0A725401275AC68655BF911C53E7976D691814BC316EAC4F35FB4E96AF43E1FEFCF4F4702F32C055D13B380BC25FC2A96115D506F394945C"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "copyright": "Copyright 2013-2025 \u00A9 The AvaloniaUI Project",
+      "purl": "pkg:nuget/Avalonia.Native@11.3.9",
+      "externalReferences": [
+        {
+          "url": "https://avaloniaui.net/?utm_source=nuget\u0026utm_medium=referral\u0026utm_content=project_homepage_link",
+          "type": "website"
+        },
+        {
+          "url": "https://github.com/AvaloniaUI/Avalonia/",
+          "type": "vcs"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:nuget/Avalonia.Remote.Protocol@11.3.9",
+      "authors": [
+        {
+          "name": "Avalonia Team"
+        }
+      ],
+      "name": "Avalonia.Remote.Protocol",
+      "version": "11.3.9",
+      "description": "Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "0CDBA0B6E40D5B74003B5AC7ABBE937AD4B822767E533C162C62BABF134F2E02FEA1BA34AC21CAA4B887A514BA3559C99D0EC7C317FD25DAA94BA3828FB739B9"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "copyright": "Copyright 2013-2025 \u00A9 The AvaloniaUI Project",
+      "purl": "pkg:nuget/Avalonia.Remote.Protocol@11.3.9",
+      "externalReferences": [
+        {
+          "url": "https://avaloniaui.net/?utm_source=nuget\u0026utm_medium=referral\u0026utm_content=project_homepage_link",
+          "type": "website"
+        },
+        {
+          "url": "https://github.com/AvaloniaUI/Avalonia/",
+          "type": "vcs"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:nuget/Avalonia.Skia@11.3.9",
+      "authors": [
+        {
+          "name": "Avalonia Team"
+        }
+      ],
+      "name": "Avalonia.Skia",
+      "version": "11.3.9",
+      "description": "Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "A29564F5B0F0CC4EBD5D15FBB18B07D74E2C9418CD9899C8B04AE35AD79C4C65EBAB3005A863305121FA09E191C12914A064A1025F2D43BD7AEDFB96F99BE20C"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "copyright": "Copyright 2013-2025 \u00A9 The AvaloniaUI Project",
+      "purl": "pkg:nuget/Avalonia.Skia@11.3.9",
+      "externalReferences": [
+        {
+          "url": "https://avaloniaui.net/?utm_source=nuget\u0026utm_medium=referral\u0026utm_content=project_homepage_link",
+          "type": "website"
+        },
+        {
+          "url": "https://github.com/AvaloniaUI/Avalonia/",
+          "type": "vcs"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:nuget/Avalonia.Themes.Fluent@11.3.9",
+      "authors": [
+        {
+          "name": "Avalonia Team"
+        }
+      ],
+      "name": "Avalonia.Themes.Fluent",
+      "version": "11.3.9",
+      "description": "Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "D0448936DBFB54F2AE2DA4CCF9E8BAC8116A9B7B561CA90486F61D5E1CEE9E07FAA36DFE187B27AB6223D2FB6E7457C8A356484CA430BA14525E1388DFC40EB1"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "copyright": "Copyright 2013-2025 \u00A9 The AvaloniaUI Project",
+      "purl": "pkg:nuget/Avalonia.Themes.Fluent@11.3.9",
+      "externalReferences": [
+        {
+          "url": "https://avaloniaui.net/?utm_source=nuget\u0026utm_medium=referral\u0026utm_content=project_homepage_link",
+          "type": "website"
+        },
+        {
+          "url": "https://github.com/AvaloniaUI/Avalonia/",
+          "type": "vcs"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:nuget/Avalonia.Themes.Simple@11.3.9",
+      "authors": [
+        {
+          "name": "Avalonia Team"
+        }
+      ],
+      "name": "Avalonia.Themes.Simple",
+      "version": "11.3.9",
+      "description": "Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "C9300BF5D83886DC00694ECF3D1E66607CB7EFA7D5ABBEC8D983BA2282919AA8CC200975354605BF1D79405124E16C86E808E2760F67F2F3AE2BE8620D3F3378"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "copyright": "Copyright 2013-2025 \u00A9 The AvaloniaUI Project",
+      "purl": "pkg:nuget/Avalonia.Themes.Simple@11.3.9",
+      "externalReferences": [
+        {
+          "url": "https://avaloniaui.net/?utm_source=nuget\u0026utm_medium=referral\u0026utm_content=project_homepage_link",
+          "type": "website"
+        },
+        {
+          "url": "https://github.com/AvaloniaUI/Avalonia/",
+          "type": "vcs"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:nuget/Avalonia.Win32@11.3.9",
+      "authors": [
+        {
+          "name": "Avalonia Team"
+        }
+      ],
+      "name": "Avalonia.Win32",
+      "version": "11.3.9",
+      "description": "Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "BFB97E33D2C2C0382337A32A9E6C9C91142330A208398B61C1D8170B6151EAFF53907D0F1FA1E4522BCD54D1C8628E90CE8D66E0A8DFE16D9FFE3EB332DE093F"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "copyright": "Copyright 2013-2025 \u00A9 The AvaloniaUI Project",
+      "purl": "pkg:nuget/Avalonia.Win32@11.3.9",
+      "externalReferences": [
+        {
+          "url": "https://avaloniaui.net/?utm_source=nuget\u0026utm_medium=referral\u0026utm_content=project_homepage_link",
+          "type": "website"
+        },
+        {
+          "url": "https://github.com/AvaloniaUI/Avalonia/",
+          "type": "vcs"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:nuget/Avalonia.X11@11.3.9",
+      "authors": [
+        {
+          "name": "Avalonia Team"
+        }
+      ],
+      "name": "Avalonia.X11",
+      "version": "11.3.9",
+      "description": "Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "6AFCA81D44DDCC5BABBDBD661BFB7984703D33B162B5DCB2EA9ED6477BF233764B0427386E2418F15596C35CE7892C3B286C0606CE46ACBFF6CEDCE0639AD629"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "copyright": "Copyright 2013-2025 \u00A9 The AvaloniaUI Project",
+      "purl": "pkg:nuget/Avalonia.X11@11.3.9",
+      "externalReferences": [
+        {
+          "url": "https://avaloniaui.net/?utm_source=nuget\u0026utm_medium=referral\u0026utm_content=project_homepage_link",
+          "type": "website"
+        },
+        {
+          "url": "https://github.com/AvaloniaUI/Avalonia/",
+          "type": "vcs"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:nuget/CommunityToolkit.Mvvm@8.2.1",
+      "authors": [
+        {
+          "name": "Microsoft"
+        }
+      ],
+      "name": "CommunityToolkit.Mvvm",
+      "version": "8.2.1",
+      "description": "This package includes a .NET MVVM library with helpers such as:\n      - ObservableObject: a base class for objects implementing the INotifyPropertyChanged interface.\n      - ObservableRecipient: a base class for observable objects with support for the IMessenger service.\n      - ObservableValidator: a base class for objects implementing the INotifyDataErrorInfo interface.\n      - RelayCommand: a simple delegate command implementing the ICommand interface.\n      - AsyncRelayCommand: a delegate command supporting asynchronous operations and cancellation.\n      - WeakReferenceMessenger: a messaging system to exchange messages through different loosely-coupled objects.\n      - StrongReferenceMessenger: a high-performance messaging system that trades weak references for speed.\n      - Ioc: a helper class to configure dependency injection service containers.",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "CFBC095BADEEC47DA0CD9237130204ECC5B1D54671B807A402C357F07C4375DE9BD4DBC4016E69BDF8FF64ACDDE69F975965287E40B5FACFF2A932AF08A865CF"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "copyright": "(c) .NET Foundation and Contributors. All rights reserved.",
+      "purl": "pkg:nuget/CommunityToolkit.Mvvm@8.2.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/CommunityToolkit/dotnet",
+          "type": "website"
+        },
+        {
+          "url": "https://github.com/CommunityToolkit/dotnet",
+          "type": "vcs"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:nuget/HarfBuzzSharp@8.3.1.1",
+      "authors": [
+        {
+          "name": "Microsoft"
+        }
+      ],
+      "name": "HarfBuzzSharp",
+      "version": "8.3.1.1",
+      "description": "HarfBuzzSharp is a cross-platform OpenType text shaping engine for .NET platforms.",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "ED1D94447956FA595C4867FE3EEB4A7B67C97E00E0DA5A72762362212CBF25E62BE5936E59617C94A1CBD4E6BBD0AC902854D0D36866BD920ED6A85AE663AC8C"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "copyright": "\u00A9 Microsoft Corporation. All rights reserved.",
+      "purl": "pkg:nuget/HarfBuzzSharp@8.3.1.1",
+      "externalReferences": [
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=868515",
+          "type": "website"
+        },
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=868515",
+          "type": "vcs"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:nuget/HarfBuzzSharp.NativeAssets.Linux@8.3.1.1",
+      "authors": [
+        {
+          "name": "Microsoft"
+        }
+      ],
+      "name": "HarfBuzzSharp.NativeAssets.Linux",
+      "version": "8.3.1.1",
+      "description": "HarfBuzzSharp is a cross-platform OpenType text shaping engine for .NET platforms.",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "4DBFFEB5D07C377B5F6D7D54A658C6E272FA786869C4E6A6FDBF8BBF85F89D01A606DDFE240592F36DDD37807470F0546BBC7DE9A6EB0508DA15E91D14A95617"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "copyright": "\u00A9 Microsoft Corporation. All rights reserved.",
+      "purl": "pkg:nuget/HarfBuzzSharp.NativeAssets.Linux@8.3.1.1",
+      "externalReferences": [
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=868515",
+          "type": "website"
+        },
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=868515",
+          "type": "vcs"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:nuget/HarfBuzzSharp.NativeAssets.macOS@8.3.1.1",
+      "authors": [
+        {
+          "name": "Microsoft"
+        }
+      ],
+      "name": "HarfBuzzSharp.NativeAssets.macOS",
+      "version": "8.3.1.1",
+      "description": "HarfBuzzSharp is a cross-platform OpenType text shaping engine for .NET platforms.",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "063155862A999D07C01E4DF3B2DF2D23AA320C25EE62509B0BDE657EC8797E0C6FE95FE4B29E9F6B2E9A0120DC76DF431C547F7BAF9FAA19936C5A9EB78DA2E6"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "copyright": "\u00A9 Microsoft Corporation. All rights reserved.",
+      "purl": "pkg:nuget/HarfBuzzSharp.NativeAssets.macOS@8.3.1.1",
+      "externalReferences": [
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=868515",
+          "type": "website"
+        },
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=868515",
+          "type": "vcs"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:nuget/HarfBuzzSharp.NativeAssets.WebAssembly@8.3.1.1",
+      "authors": [
+        {
+          "name": "Microsoft"
+        }
+      ],
+      "name": "HarfBuzzSharp.NativeAssets.WebAssembly",
+      "version": "8.3.1.1",
+      "description": "HarfBuzzSharp is a cross-platform OpenType text shaping engine for .NET platforms.",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "746D52BF1820D897211982B466D274477DC2E698A97827CB6DC5303B2355AD9EC7929902D484BE205282BEC2EBAAD2824952D7096AE3B03C4A9BE5EE8384D9DB"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "copyright": "\u00A9 Microsoft Corporation. All rights reserved.",
+      "purl": "pkg:nuget/HarfBuzzSharp.NativeAssets.WebAssembly@8.3.1.1",
+      "externalReferences": [
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=868515",
+          "type": "website"
+        },
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=868515",
+          "type": "vcs"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:nuget/HarfBuzzSharp.NativeAssets.Win32@8.3.1.1",
+      "authors": [
+        {
+          "name": "Microsoft"
+        }
+      ],
+      "name": "HarfBuzzSharp.NativeAssets.Win32",
+      "version": "8.3.1.1",
+      "description": "HarfBuzzSharp is a cross-platform OpenType text shaping engine for .NET platforms.",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "5BF6504C34F9040445D6F88D975896B289CB622B4DE109761E721CB83E8D3301686EEDD6A67A9DD5E4742FEBA6D5ED1D106932372F43159926712AD6F1E02AF3"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "copyright": "\u00A9 Microsoft Corporation. All rights reserved.",
+      "purl": "pkg:nuget/HarfBuzzSharp.NativeAssets.Win32@8.3.1.1",
+      "externalReferences": [
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=868515",
+          "type": "website"
+        },
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=868515",
+          "type": "vcs"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:nuget/MicroCom.Runtime@0.11.0",
+      "authors": [
+        {
+          "name": "MicroCom.Runtime"
+        }
+      ],
+      "name": "MicroCom.Runtime",
+      "version": "0.11.0",
+      "description": "IDL-based COM interop codegen. Consumes MIDL-like IDL file, generates efficient cross-platform C# interop and C\u002B\u002B header files.",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "C00731176E34EA7B936AD58A38639843C790B027B714ED5D3EA828B85EA94B14A502DED52CA7F60BB10C0AC0E744BD6E62FDCCE0108EBAAF9731C408EECE031E"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "copyright": "Copyright 2021 \u00A9 Nikita Tsukanov",
+      "purl": "pkg:nuget/MicroCom.Runtime@0.11.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/kekekeks/MicroCom",
+          "type": "vcs"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:nuget/Microsoft.NET.ILLink.Tasks@10.0.0",
+      "authors": [
+        {
+          "name": "Microsoft"
+        }
+      ],
+      "name": "Microsoft.NET.ILLink.Tasks",
+      "version": "10.0.0",
+      "description": "MSBuild tasks for running the IL Linker",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "9E6760040C938B8832B8FD7C53D23B2615520B7D7E999CB2410CE695D2B191A550081E6670F8E0BE77E424242337CE1544513EFA15D6D3106A3D26D4BA7CB441"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "copyright": "\u00A9 Microsoft Corporation. All rights reserved.",
+      "purl": "pkg:nuget/Microsoft.NET.ILLink.Tasks@10.0.0",
+      "externalReferences": [
+        {
+          "url": "https://dot.net/",
+          "type": "website"
+        },
+        {
+          "url": "https://github.com/dotnet/dotnet",
+          "type": "vcs"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:nuget/Radaiko.EasyLogger@0.0.2",
+      "authors": [
+        {
+          "name": "radaiko"
+        }
+      ],
+      "name": "Radaiko.EasyLogger",
+      "version": "0.0.2",
+      "description": "A simple, lightweight logging library for .NET applications.",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "EBE5BC53C13E68545314C9916ED35E2F6A339EE1E2655429268C72EEC4C01D58EB884A6C072FDF5BBFA0D58637C370D246C954C620DF23019366CDF727D58358"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "copyright": "Copyright \u00A9 radaiko 2025",
+      "purl": "pkg:nuget/Radaiko.EasyLogger@0.0.2",
+      "externalReferences": [
+        {
+          "url": "https://github.com/radaiko/EasyLogger",
+          "type": "website"
+        },
+        {
+          "url": "https://github.com/radaiko/EasyLogger",
+          "type": "vcs"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:nuget/SkiaSharp@2.88.9",
+      "authors": [
+        {
+          "name": "Microsoft"
+        }
+      ],
+      "name": "SkiaSharp",
+      "version": "2.88.9",
+      "description": "SkiaSharp is a cross-platform 2D graphics API for .NET platforms that can be used across mobile, server and desktop models to render images.",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "3A2FFA5E05F45CDB80E6735EE947E91E08FF145FC50C7882E75D44B6AE0C2CD733420D15B6A4274A186B3A79D463A1273E27FF7FD79A51D0937251EBB6EF761D"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "copyright": "\u00A9 Microsoft Corporation. All rights reserved.",
+      "purl": "pkg:nuget/SkiaSharp@2.88.9",
+      "externalReferences": [
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=868515",
+          "type": "website"
+        },
+        {
+          "url": "https://github.com/mono/SkiaSharp",
+          "type": "vcs"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:nuget/SkiaSharp.NativeAssets.Linux@2.88.9",
+      "authors": [
+        {
+          "name": "Microsoft"
+        }
+      ],
+      "name": "SkiaSharp.NativeAssets.Linux",
+      "version": "2.88.9",
+      "description": "SkiaSharp is a cross-platform 2D graphics API for .NET platforms that can be used across mobile, server and desktop models to render images.",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "5C6A3E93A18E70E6ADCD548BD2F76FA311114346CE4D812E520F250D33342D5AD8D05EA285433BD15CB19BBC48D9BBF2EF7D1F1725DD71705ACCEFABA3F46892"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "copyright": "\u00A9 Microsoft Corporation. All rights reserved.",
+      "purl": "pkg:nuget/SkiaSharp.NativeAssets.Linux@2.88.9",
+      "externalReferences": [
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=868515",
+          "type": "website"
+        },
+        {
+          "url": "https://github.com/mono/SkiaSharp",
+          "type": "vcs"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:nuget/SkiaSharp.NativeAssets.macOS@2.88.9",
+      "authors": [
+        {
+          "name": "Microsoft"
+        }
+      ],
+      "name": "SkiaSharp.NativeAssets.macOS",
+      "version": "2.88.9",
+      "description": "SkiaSharp is a cross-platform 2D graphics API for .NET platforms that can be used across mobile, server and desktop models to render images.",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "74CFB865746F2911935290BFB92469B331E50415D5ABEDA87598EBDB4049C52AF84A5DAEDA41EBCB0BBAEC6A7DEBB42D83CDC6C9F61CEA55D43C720A78C3EBCE"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "copyright": "\u00A9 Microsoft Corporation. All rights reserved.",
+      "purl": "pkg:nuget/SkiaSharp.NativeAssets.macOS@2.88.9",
+      "externalReferences": [
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=868515",
+          "type": "website"
+        },
+        {
+          "url": "https://github.com/mono/SkiaSharp",
+          "type": "vcs"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:nuget/SkiaSharp.NativeAssets.WebAssembly@2.88.9",
+      "authors": [
+        {
+          "name": "Microsoft"
+        }
+      ],
+      "name": "SkiaSharp.NativeAssets.WebAssembly",
+      "version": "2.88.9",
+      "description": "SkiaSharp is a cross-platform 2D graphics API for .NET platforms that can be used across mobile, server and desktop models to render images.",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "C1815D86904C25E1BC3E43B22CC4B2DB0EC931C13DD4D9505A2B6CB0CA1D24329F725BCE650AF1B0DC12BC70D8352CC19F2AC452AAB462E7AF4787D4601E0E0A"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "copyright": "\u00A9 Microsoft Corporation. All rights reserved.",
+      "purl": "pkg:nuget/SkiaSharp.NativeAssets.WebAssembly@2.88.9",
+      "externalReferences": [
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=868515",
+          "type": "website"
+        },
+        {
+          "url": "https://github.com/mono/SkiaSharp",
+          "type": "vcs"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:nuget/SkiaSharp.NativeAssets.Win32@2.88.9",
+      "authors": [
+        {
+          "name": "Microsoft"
+        }
+      ],
+      "name": "SkiaSharp.NativeAssets.Win32",
+      "version": "2.88.9",
+      "description": "SkiaSharp is a cross-platform 2D graphics API for .NET platforms that can be used across mobile, server and desktop models to render images.",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "D18BD8194041C7FFB79302D4F1BE584E8C024E88B12CB4669A738CAE551DA3D3E3924087BB0AA42D34A9003CFB35037D73637894E67D02223D100A1B4215EEEC"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "copyright": "\u00A9 Microsoft Corporation. All rights reserved.",
+      "purl": "pkg:nuget/SkiaSharp.NativeAssets.Win32@2.88.9",
+      "externalReferences": [
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=868515",
+          "type": "website"
+        },
+        {
+          "url": "https://github.com/mono/SkiaSharp",
+          "type": "vcs"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:nuget/Tmds.DBus.Protocol@0.21.2",
+      "authors": [
+        {
+          "name": "Tom Deseyn"
+        }
+      ],
+      "name": "Tmds.DBus.Protocol",
+      "version": "0.21.2",
+      "description": "Tmds.DBus.Protocol Library",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "01E55DAD6B1B3060CF3022727231DB50AE1272F8D71112783F9213FE1ADC930CD8EE60227F7B5569711287858086A9E882BEDA137EBD08C279FDA23C89AF25F2"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "copyright": "Tom Deseyn",
+      "purl": "pkg:nuget/Tmds.DBus.Protocol@0.21.2",
+      "externalReferences": [
+        {
+          "url": "https://github.com/tmds/Tmds.DBus.git",
+          "type": "vcs"
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "Navigator@0.0.0",
+      "dependsOn": [
+        "pkg:nuget/Avalonia@11.3.9",
+        "pkg:nuget/Avalonia.Controls.DataGrid@11.3.9",
+        "pkg:nuget/Avalonia.Fonts.Inter@11.3.9",
+        "pkg:nuget/Avalonia.Themes.Fluent@11.3.9",
+        "pkg:nuget/CommunityToolkit.Mvvm@8.2.1",
+        "pkg:nuget/Radaiko.EasyLogger@0.0.2",
+        "pkg:nuget/Avalonia.Desktop@11.3.9",
+        "pkg:nuget/Avalonia.Diagnostics@11.3.9",
+        "pkg:nuget/Microsoft.NET.ILLink.Tasks@10.0.0"
+      ]
+    },
+    {
+      "ref": "pkg:nuget/Avalonia.Angle.Windows.Natives@2.1.25547.20250602",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:nuget/Avalonia.BuildServices@11.3.2",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:nuget/Avalonia.Controls.ColorPicker@11.3.9",
+      "dependsOn": [
+        "pkg:nuget/Avalonia@11.3.9",
+        "pkg:nuget/Avalonia.Remote.Protocol@11.3.9"
+      ]
+    },
+    {
+      "ref": "pkg:nuget/Avalonia.Controls.DataGrid@11.3.9",
+      "dependsOn": [
+        "pkg:nuget/Avalonia@11.3.9"
+      ]
+    },
+    {
+      "ref": "pkg:nuget/Avalonia.Desktop@11.3.9",
+      "dependsOn": [
+        "pkg:nuget/Avalonia@11.3.9",
+        "pkg:nuget/Avalonia.Native@11.3.9",
+        "pkg:nuget/Avalonia.Skia@11.3.9",
+        "pkg:nuget/Avalonia.Win32@11.3.9",
+        "pkg:nuget/Avalonia.X11@11.3.9"
+      ]
+    },
+    {
+      "ref": "pkg:nuget/Avalonia.Diagnostics@11.3.9",
+      "dependsOn": [
+        "pkg:nuget/Avalonia@11.3.9",
+        "pkg:nuget/Avalonia.Controls.ColorPicker@11.3.9",
+        "pkg:nuget/Avalonia.Themes.Simple@11.3.9"
+      ]
+    },
+    {
+      "ref": "pkg:nuget/Avalonia.Fonts.Inter@11.3.9",
+      "dependsOn": [
+        "pkg:nuget/Avalonia@11.3.9"
+      ]
+    },
+    {
+      "ref": "pkg:nuget/Avalonia.FreeDesktop@11.3.9",
+      "dependsOn": [
+        "pkg:nuget/Avalonia@11.3.9",
+        "pkg:nuget/Tmds.DBus.Protocol@0.21.2"
+      ]
+    },
+    {
+      "ref": "pkg:nuget/Avalonia.Native@11.3.9",
+      "dependsOn": [
+        "pkg:nuget/Avalonia@11.3.9"
+      ]
+    },
+    {
+      "ref": "pkg:nuget/Avalonia.Remote.Protocol@11.3.9",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:nuget/Avalonia.Skia@11.3.9",
+      "dependsOn": [
+        "pkg:nuget/Avalonia@11.3.9",
+        "pkg:nuget/HarfBuzzSharp@8.3.1.1",
+        "pkg:nuget/HarfBuzzSharp.NativeAssets.Linux@8.3.1.1",
+        "pkg:nuget/HarfBuzzSharp.NativeAssets.WebAssembly@8.3.1.1",
+        "pkg:nuget/SkiaSharp@2.88.9",
+        "pkg:nuget/SkiaSharp.NativeAssets.Linux@2.88.9",
+        "pkg:nuget/SkiaSharp.NativeAssets.WebAssembly@2.88.9"
+      ]
+    },
+    {
+      "ref": "pkg:nuget/Avalonia.Themes.Fluent@11.3.9",
+      "dependsOn": [
+        "pkg:nuget/Avalonia@11.3.9"
+      ]
+    },
+    {
+      "ref": "pkg:nuget/Avalonia.Themes.Simple@11.3.9",
+      "dependsOn": [
+        "pkg:nuget/Avalonia@11.3.9"
+      ]
+    },
+    {
+      "ref": "pkg:nuget/Avalonia.Win32@11.3.9",
+      "dependsOn": [
+        "pkg:nuget/Avalonia@11.3.9",
+        "pkg:nuget/Avalonia.Angle.Windows.Natives@2.1.25547.20250602"
+      ]
+    },
+    {
+      "ref": "pkg:nuget/Avalonia.X11@11.3.9",
+      "dependsOn": [
+        "pkg:nuget/Avalonia@11.3.9",
+        "pkg:nuget/Avalonia.FreeDesktop@11.3.9",
+        "pkg:nuget/Avalonia.Skia@11.3.9"
+      ]
+    },
+    {
+      "ref": "pkg:nuget/Avalonia@11.3.9",
+      "dependsOn": [
+        "pkg:nuget/Avalonia.BuildServices@11.3.2",
+        "pkg:nuget/Avalonia.Remote.Protocol@11.3.9",
+        "pkg:nuget/MicroCom.Runtime@0.11.0"
+      ]
+    },
+    {
+      "ref": "pkg:nuget/CommunityToolkit.Mvvm@8.2.1",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:nuget/HarfBuzzSharp.NativeAssets.Linux@8.3.1.1",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:nuget/HarfBuzzSharp.NativeAssets.macOS@8.3.1.1",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:nuget/HarfBuzzSharp.NativeAssets.WebAssembly@8.3.1.1",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:nuget/HarfBuzzSharp.NativeAssets.Win32@8.3.1.1",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:nuget/HarfBuzzSharp@8.3.1.1",
+      "dependsOn": [
+        "pkg:nuget/HarfBuzzSharp.NativeAssets.Win32@8.3.1.1",
+        "pkg:nuget/HarfBuzzSharp.NativeAssets.macOS@8.3.1.1"
+      ]
+    },
+    {
+      "ref": "pkg:nuget/MicroCom.Runtime@0.11.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:nuget/Microsoft.NET.ILLink.Tasks@10.0.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:nuget/Radaiko.EasyLogger@0.0.2",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:nuget/SkiaSharp.NativeAssets.Linux@2.88.9",
+      "dependsOn": [
+        "pkg:nuget/SkiaSharp@2.88.9"
+      ]
+    },
+    {
+      "ref": "pkg:nuget/SkiaSharp.NativeAssets.macOS@2.88.9",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:nuget/SkiaSharp.NativeAssets.WebAssembly@2.88.9",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:nuget/SkiaSharp.NativeAssets.Win32@2.88.9",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:nuget/SkiaSharp@2.88.9",
+      "dependsOn": [
+        "pkg:nuget/SkiaSharp.NativeAssets.Win32@2.88.9",
+        "pkg:nuget/SkiaSharp.NativeAssets.macOS@2.88.9"
+      ]
+    },
+    {
+      "ref": "pkg:nuget/Tmds.DBus.Protocol@0.21.2",
+      "dependsOn": []
+    }
+  ]
+}

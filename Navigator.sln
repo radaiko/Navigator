@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Navigator.Linux", "src\Navi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Navigator.Mac", "src\Navigator.Mac\Navigator.Mac.csproj", "{1C699311-266C-4080-9A6B-AD16C270638B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Navigator.UnitTest", "tests\Navigator.UnitTest\Navigator.UnitTest.csproj", "{BE73641F-2DA8-409F-9A22-292338FFD5AA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,18 @@ Global
 		{1C699311-266C-4080-9A6B-AD16C270638B}.Release|x86.Build.0 = Release|Any CPU
 		{2C162AE3-3B92-BEC8-FC50-85EBCF168001}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2C162AE3-3B92-BEC8-FC50-85EBCF168001}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE73641F-2DA8-409F-9A22-292338FFD5AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE73641F-2DA8-409F-9A22-292338FFD5AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE73641F-2DA8-409F-9A22-292338FFD5AA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BE73641F-2DA8-409F-9A22-292338FFD5AA}.Debug|x64.Build.0 = Debug|Any CPU
+		{BE73641F-2DA8-409F-9A22-292338FFD5AA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BE73641F-2DA8-409F-9A22-292338FFD5AA}.Debug|x86.Build.0 = Debug|Any CPU
+		{BE73641F-2DA8-409F-9A22-292338FFD5AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE73641F-2DA8-409F-9A22-292338FFD5AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE73641F-2DA8-409F-9A22-292338FFD5AA}.Release|x64.ActiveCfg = Release|Any CPU
+		{BE73641F-2DA8-409F-9A22-292338FFD5AA}.Release|x64.Build.0 = Release|Any CPU
+		{BE73641F-2DA8-409F-9A22-292338FFD5AA}.Release|x86.ActiveCfg = Release|Any CPU
+		{BE73641F-2DA8-409F-9A22-292338FFD5AA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

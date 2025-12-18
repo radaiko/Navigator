@@ -11,10 +11,10 @@ public partial class PackageInfo : ObservableObject {
     [ObservableProperty] private string _url;
 
     public PackageInfo(Json json) {
-        Name = json["name"]?.S ?? "";
-        Version = json["version"]?.S ?? "";
-        Description = json["description"]?.S ?? "";
-        License = json["licenses"]?.A?.First()?.O?["license"]?.O?["id"]?.S ?? "Unknown";
-        Url = json["externalReferences"]?.A?.First()?.O?["url"]?.S ?? "";
+        Name = json["name"].S;
+        Version = json["version"].S;
+        Description = json["description"].S;
+        License = json["licenses"][0]["license"]["id"].S;
+        Url = json["externalReferences"][0]["url"].S;
      }
  }
