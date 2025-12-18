@@ -15,7 +15,7 @@ public sealed class Json {
     /// Lightweight reference wrapper returned by the indexer. Can be null.
     /// Provides typed accessors (S/I/D/B) and implicit conversion to string for convenient usage.
     /// </summary>
-    public sealed class JsonVal {
+    public readonly struct JsonVal {
         internal readonly object? V;
         internal JsonVal(object? v) { V = v; }
 
@@ -72,8 +72,9 @@ public sealed class Json {
          /// <summary>Safe indexer for array-like values. Returns a JsonVal wrapper (may contain null) when index out of range or not an array.</summary>
          public JsonVal this[int index] {
              get {
-                 var arr = A;
-                 if (arr != null && index >= 0 && index < arr.Count) return arr[index];
+                 if (V is IList<object?> arr) {
+                     if (index >= 0 && index < arr.Count) return new JsonVal(arr[index]);
+                 }
                  return new JsonVal(null);
              }
          }
@@ -110,7 +111,7 @@ public sealed class Json {
     /// </summary>
     /// <param name="jsonText">The JSON text to parse.</param>
     public Json(string jsonText) : this() {
-        var p = new Parser(jsonText);
+        var p = new Parser(jsonText.AsSpan());
         var v = p.ParseValue();
         if (v is Json j) {
             foreach (var kv in j._map) _map[kv.Key] = kv.Value;
@@ -394,20 +395,18 @@ public sealed class Json {
     }
 
     // Parser: fast recursive descent over a string
-    private sealed class Parser {
-        private readonly string _s;
+    private ref struct Parser {
+        private ReadOnlySpan<char> _s;
         private int _i;
-        private readonly int _n;
 
-        public Parser(string s) {
+        public Parser(ReadOnlySpan<char> s) {
             _s = s;
-            _n = _s.Length;
             _i = 0;
         }
 
         public object? ParseValue() {
             SkipWhitespace();
-            if (_i >= _n) return null;
+            if (_i >= _s.Length) return null;
             switch (_s[_i]) {
                 case '{': return ParseObject();
                 case '[': return ParseArray();
@@ -421,7 +420,7 @@ public sealed class Json {
         }
 
         private object? ParseLiteral(string literal, object? value) {
-            if (_i + literal.Length <= _n && string.Compare(_s, _i, literal, 0, literal.Length, StringComparison.Ordinal) == 0) {
+            if (_i + literal.Length <= _s.Length && _s.Slice(_i, literal.Length).SequenceEqual(literal.AsSpan())) {
                 _i += literal.Length;
                 return value;
             }
@@ -430,46 +429,48 @@ public sealed class Json {
 
         private object? ParseNumberOrUnquoted() {
             var start = _i;
-            if (_s[_i] == '-' ) _i++;
-            while (_i < _n && char.IsDigit(_s[_i])) _i++;
+            if (_i < _s.Length && _s[_i] == '-' ) _i++;
+            while (_i < _s.Length && char.IsDigit(_s[_i])) _i++;
             var isFloat = false;
-            if (_i < _n && _s[_i] == '.') {
+            if (_i < _s.Length && _s[_i] == '.') {
                 isFloat = true; _i++;
-                while (_i < _n && char.IsDigit(_s[_i])) _i++;
+                while (_i < _s.Length && char.IsDigit(_s[_i])) _i++;
             }
-            if (_i < _n && (_s[_i] == 'e' || _s[_i] == 'E')) {
+            if (_i < _s.Length && (_s[_i] == 'e' || _s[_i] == 'E')) {
                 isFloat = true; _i++;
-                if (_i < _n && (_s[_i] == '+' || _s[_i] == '-')) _i++;
-                while (_i < _n && char.IsDigit(_s[_i])) _i++;
+                if (_i < _s.Length && (_s[_i] == '+' || _s[_i] == '-')) _i++;
+                while (_i < _s.Length && char.IsDigit(_s[_i])) _i++;
             }
-            var tok = _s.Substring(start, _i - start);
-            if (tok.Length == 0) throw new FormatException($"Unexpected character '{_s[_i]}' at {_i}");
+
+            var slice = _s.Slice(start, _i - start);
+            if (slice.Length == 0) throw new FormatException($"Unexpected character '{_s[_i]}' at {_i}");
+
             if (isFloat) {
-                if (double.TryParse(tok, NumberStyles.Float, CultureInfo.InvariantCulture, out var d)) return d;
+                if (double.TryParse(slice, NumberStyles.Float, CultureInfo.InvariantCulture, out var d)) return d;
             } else {
-                if (long.TryParse(tok, NumberStyles.Integer, CultureInfo.InvariantCulture, out var l)) return l;
+                if (long.TryParse(slice, NumberStyles.Integer, CultureInfo.InvariantCulture, out var l)) return l;
             }
             // fallback
-            if (double.TryParse(tok, NumberStyles.Float | NumberStyles.AllowThousands, CultureInfo.InvariantCulture, out var fd)) return fd;
-            throw new FormatException($"Invalid number '{tok}'");
+            if (double.TryParse(slice, NumberStyles.Float | NumberStyles.AllowThousands, CultureInfo.InvariantCulture, out var fd)) return fd;
+            throw new FormatException($"Invalid number '{slice.ToString()}'");
         }
 
         private Json ParseObject() {
             // assume current is '{'
             _i++; SkipWhitespace();
             var obj = new Json();
-            if (_i < _n && _s[_i] == '}') { _i++; return obj; }
+            if (_i < _s.Length && _s[_i] == '}') { _i++; return obj; }
             while (true) {
                 SkipWhitespace();
-                if (_i >= _n || _s[_i] != '"') throw new FormatException("Expected string for object key");
+                if (_i >= _s.Length || _s[_i] != '"') throw new FormatException("Expected string for object key");
                 var key = ParseString();
                 SkipWhitespace();
-                if (_i >= _n || _s[_i] != ':') throw new FormatException("Expected ':' after object key");
+                if (_i >= _s.Length || _s[_i] != ':') throw new FormatException("Expected ':' after object key");
                 _i++; SkipWhitespace();
                 var value = ParseValue();
                 obj._map[key] = value;
                 SkipWhitespace();
-                if (_i >= _n) throw new FormatException("Unterminated object");
+                if (_i >= _s.Length) throw new FormatException("Unterminated object");
                 if (_s[_i] == '}') { _i++; break; }
                 if (_s[_i] == ',') { _i++; continue; }
                 throw new FormatException($"Unexpected character '{_s[_i]}' in object at {_i}");
@@ -480,13 +481,13 @@ public sealed class Json {
         private IList<object?> ParseArray() {
             _i++; SkipWhitespace();
             var list = new List<object?>();
-            if (_i < _n && _s[_i] == ']') { _i++; return list; }
+            if (_i < _s.Length && _s[_i] == ']') { _i++; return list; }
             while (true) {
                 SkipWhitespace();
                 var v = ParseValue();
                 list.Add(v);
                 SkipWhitespace();
-                if (_i >= _n) throw new FormatException("Unterminated array");
+                if (_i >= _s.Length) throw new FormatException("Unterminated array");
                 if (_s[_i] == ']') { _i++; break; }
                 if (_s[_i] == ',') { _i++; continue; }
                 throw new FormatException($"Unexpected character '{_s[_i]}' in array at {_i}");
@@ -495,15 +496,32 @@ public sealed class Json {
         }
 
         private string ParseString() {
-            // assume '"' at current
             if (_s[_i] != '"') throw new FormatException("Expected string");
             _i++;
+            var start = _i;
+            while (_i < _s.Length) {
+                var c = _s[_i];
+                if (c == '"') {
+                    var res = _s.Slice(start, _i - start).ToString();
+                    _i++;
+                    return res;
+                }
+                if (c == '\\') {
+                    return ParseStringSlow(start);
+                }
+                _i++;
+            }
+            throw new FormatException("Unterminated string");
+        }
+
+        private string ParseStringSlow(int start) {
             var sb = new StringBuilder();
-            while (_i < _n) {
+            sb.Append(_s.Slice(start, _i - start));
+            while (_i < _s.Length) {
                 var c = _s[_i++];
                 if (c == '"') return sb.ToString();
                 if (c == '\\') {
-                    if (_i >= _n) break;
+                    if (_i >= _s.Length) break;
                     var esc = _s[_i++];
                     switch (esc) {
                         case '"': sb.Append('"'); break;
@@ -515,8 +533,8 @@ public sealed class Json {
                         case 'r': sb.Append('\r'); break;
                         case 't': sb.Append('\t'); break;
                         case 'u': {
-                            if (_i + 4 > _n) throw new FormatException("Invalid unicode escape");
-                            var hex = _s.Substring(_i, 4);
+                            if (_i + 4 > _s.Length) throw new FormatException("Invalid unicode escape");
+                            var hex = _s.Slice(_i, 4);
                             if (!int.TryParse(hex, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out var code)) throw new FormatException("Invalid unicode escape");
                             sb.Append((char)code);
                             _i += 4;
@@ -533,7 +551,7 @@ public sealed class Json {
         }
 
         private void SkipWhitespace() {
-            while (_i < _n) {
+            while (_i < _s.Length) {
                 var c = _s[_i];
                 if (c == ' ' || c == '\n' || c == '\r' || c == '\t') { _i++; continue; }
                 break;
