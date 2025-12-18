@@ -9,7 +9,7 @@
     <!-- NativeMenu for macos and some linux distros -->
     <NativeMenu.Menu>
         <NativeMenu>
-            <NativeMenuItem Header="About This Application…" Click="OpenAboutDialog"/>
+            <NativeMenuItem Header="About Navigator" Click="OpenAboutDialog"/>
             <NativeMenuItem Header="Check for Updates" Click="CheckForUpdates" />
             <NativeMenuItem Header="Preferences…" Click="OpenSettingsTab" Gesture="Meta+,"/>
             <!-- <NativeMenuItem Header="Quit" Click="CloseApplication" Gesture="Meta+Q" /> -->

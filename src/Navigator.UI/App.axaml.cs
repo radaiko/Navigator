@@ -22,23 +22,29 @@ public class App : Application {
         // Observe AppDomain unhandled exceptions as a safety net (cannot always prevent termination,
         // but will allow logging and showing a dialog when possible).
         AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+        Dispatcher.UIThread.UnhandledException +=  OnDispatcherUnhandledException;
 
         AvaloniaXamlLoader.Load(this);
     }
 
     public override void OnFrameworkInitializationCompleted() {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop) {
-            DisableAvaloniaDataAnnotationValidation();
+            try {
+                DisableAvaloniaDataAnnotationValidation();
 
-            _mainWindowViewModel = new MainWindowViewModel();
+                _mainWindowViewModel = new MainWindowViewModel();
 
-            // Add a FileWindowTab by default
-            var fileTab = new FileWindowTab();
-            _mainWindowViewModel.AddTab(fileTab);
+                // Add a FileWindowTab by default
+                var fileTab = new FileWindowTab();
+                _mainWindowViewModel.AddTab(fileTab);
 
-            desktop.MainWindow = new MainWindow {
-                DataContext = _mainWindowViewModel
-            };
+                desktop.MainWindow = new MainWindow {
+                    DataContext = _mainWindowViewModel
+                };
+            } catch (Exception ex) {
+                Logger.Error("Error during application initialization", ex);
+                desktop.MainWindow = new ExceptionWindow(ex);
+            }
         }
 
         base.OnFrameworkInitializationCompleted();
@@ -59,6 +65,14 @@ public class App : Application {
             Logger.Error("Error in CurrentDomain_UnhandledException", logEx);
         }
     }
+
+    private void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e) {
+        Exception ex = e.Exception;
+        Logger.Error("Dispatcher unhandled exception", ex);
+        Dispatcher.UIThread.Post(() => ShowExceptionWindow(ex));
+        e.Handled = true;
+    }
+
 
     private void ShowExceptionWindow(Exception exception) {
         try {

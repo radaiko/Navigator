@@ -2,11 +2,18 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d"
         x:Class="Navigator.UI.Views.ExceptionWindow"
-        Title="ExceptionWindow">
+        Title="ExceptionWindow"
+        Background="{StaticResource AppBackground}"
+        Foreground="{StaticResource AppText}"
+        SizeToContent="WidthAndHeight"
+        Padding="12">
     <StackPanel>
-        <TextBlock Text="An exception has happened" />
-        <TextBlock Text="{Binding ExceptionContent}" />
+        <TextBlock Text="An exception has happened" FontWeight="Bold" Margin="0,0,0,8" HorizontalAlignment="Center"/>
+        <TextBlock Name="ExceptionContent" />
+        <StackPanel FlowDirection="RightToLeft" Margin="0,0,0,4">
+            <Button Content="Copy" Click="CopyButtonClicked" Margin="0,0,36,0" />
+        </StackPanel>
     </StackPanel>
 </Window>
