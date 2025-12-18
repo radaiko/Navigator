@@ -58,3 +58,7 @@ public static partial class ExceptionExtensions {
 
 
 }
+
+public static class StringExtensions {
+    public static bool IsBlank(this string? str) => string.IsNullOrWhiteSpace(str);
+}

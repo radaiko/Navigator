@@ -1,121 +1,72 @@
-using System.Text;
 using System.Diagnostics;
+using System.Collections.ObjectModel;
+using System.IO;
 using Avalonia.Controls;
-using Avalonia.Threading;
 using Avalonia.Markup.Xaml;
+using Avalonia.Interactivity;
+using Navigator.UI.Models;
+using Navigator.UI.Utils;
 
 namespace Navigator.UI.Views;
 
 public partial class NugetsWindow : Window {
+    // Collection bound to the ListBox (always initialized)
+    private readonly ObservableCollection<PackageInfo> _items = [];
 
-     public record PackageInfo(string Name, string Version, string AssemblyName);
+    public NugetsWindow() {
+        InitializeComponent();
 
-     public NugetsWindow() {
-         InitializeComponent();
+        // The generated field for the named ListBox may sometimes be null (depending on how XAML was loaded),
+        // so resolve it defensively and set its ItemsSource.
+        var list = PackagesList ?? this.FindControl<ListBox>("PackagesList");
+        if (list != null) list.ItemsSource = _items;
 
-         RefreshButton.Click += (_, _) => RefreshList();
-         CopyButton.Click += (_, _) => CopySelected();
-         CloseButton.Click += (_, _) => Close();
+        var sbomPath = FindSbomPath();
+        if (sbomPath.IsBlank()) throw new ArgumentNullException(nameof(sbomPath), "SBOM not found");
+        ParseSbom(sbomPath);
+    }
 
-         // Load initially
-         Dispatcher.UIThread.Post(RefreshList);
-     }
+    private void InitializeComponent() {
+        AvaloniaXamlLoader.Load(this);
+    }
 
-     private void InitializeComponent() {
-         AvaloniaXamlLoader.Load(this);
-     }
+    private string? FindSbomPath() {
+        try {
+            var baseDir = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "Resources"));
+            var binCandidate = Path.Combine(baseDir, "sbom.json");
+            if (File.Exists(binCandidate)) return binCandidate;
+        } catch {
+            // ignore IO errors and fall back to null
+        }
+        return null;
+    }
 
-     private void RefreshList() {
-         try {
-             var assemblies = AppDomain.CurrentDomain.GetAssemblies()
-                 .Where(a => !a.IsDynamic)
-                 .OrderBy(a => a.GetName().Name ?? string.Empty)
-                 .ToList();
+    private void ParseSbom(string? sbomPath) {
+        if (string.IsNullOrEmpty(sbomPath)) return;
+        var txt = File.ReadAllText(sbomPath);
+        var json = new Json(txt);
 
-             var items = new List<PackageInfo>();
-             foreach (var asm in assemblies) {
-                 var name = asm.GetName();
-                 var ver = name.Version?.ToString() ?? "n/a";
-                 var asmName = !string.IsNullOrEmpty(asm.Location) ? asm.Location : (name.Name ?? string.Empty);
-                 var displayName = name.Name ?? asmName;
-                 items.Add(new PackageInfo(displayName, ver, asmName));
-             }
+        var components = json["components"]?.A;
+        if (components != null) {
+            foreach (var component in components) {
+                var obj = component.O;
+                if (obj != null) _items?.Add(new PackageInfo(obj));
+            }
+        }
+    }
 
-             PackagesList.ItemsSource = items;
-         } catch (Exception ex) {
-             PackagesList.ItemsSource = new List<PackageInfo> { new PackageInfo("Error", ex.Message, string.Empty) };
-         }
-     }
 
-     private void CopySelected() {
-         string textToCopy = string.Empty;
-         if (PackagesList.SelectedItem is PackageInfo pi) {
-             var sb = new StringBuilder();
-             sb.AppendLine($"{pi.Name} {pi.Version}");
-             textToCopy = sb.ToString();
-         } else {
-             // Copy all
-             if (PackagesList.ItemsSource is IEnumerable<PackageInfo> list) {
-                 var sb = new StringBuilder();
-                 foreach (var i in list) {
-                     sb.AppendLine($"{i.Name} {i.Version}    {i.AssemblyName}");
-                 }
-                 textToCopy = sb.ToString();
-             }
-         }
-
-         if (!string.IsNullOrEmpty(textToCopy)) {
-             TryWriteToClipboard(textToCopy);
-         }
-     }
-
-     private static void TryWriteToClipboard(string text) {
-         try {
-             if (OperatingSystem.IsMacOS()) {
-                 WriteToProcess("pbcopy", text);
-             } else if (OperatingSystem.IsWindows()) {
-                 WriteToProcess("cmd.exe", "/c clip", text);
-             } else {
-                 // linux / unix - try wl-copy then xclip
-                 if (!WriteToProcess("wl-copy", text)) {
-                     if (!WriteToProcess("xclip", "-selection clipboard", text)) {
-                         // as fallback, write to stdout of 'cat' to hopefully allow redirection
-                         WriteToProcess("/bin/sh", "-c 'cat | xclip -selection clipboard'", text);
-                     }
-                 }
-             }
-         } catch {
-             // ignore
-         }
-     }
-
-     private static bool WriteToProcess(string fileName, string argsOrText, string? maybeText = null) {
-         try {
-             var psi = new ProcessStartInfo {
-                 FileName = fileName,
-                 UseShellExecute = false,
-                 RedirectStandardInput = true,
-             };
-
-             if (maybeText is null) {
-                 // argsOrText is actually text
-                 psi.Arguments = string.Empty;
-             } else {
-                 psi.Arguments = argsOrText;
-             }
-
-             using var p = Process.Start(psi);
-             if (p is null) return false;
-
-             var toWrite = maybeText ?? argsOrText;
-             if (!string.IsNullOrEmpty(toWrite)) {
-                 p.StandardInput.Write(toWrite);
-                 p.StandardInput.Close();
-             }
-             p.WaitForExit(2000);
-             return true;
-         } catch {
-             return false;
-         }
-     }
+    // Open license/project/nuget page when the license button is clicked
+    private void LicenseButton_Click(object? sender, RoutedEventArgs e) {
+        if (sender is Button btn && btn.DataContext is PackageInfo pi) {
+            var url = pi.Url;
+            if (string.IsNullOrEmpty(url)) return;
+            try {
+                var psi = new ProcessStartInfo { FileName = url, UseShellExecute = true };
+                Process.Start(psi);
+            } catch {
+                // ignore
+            }
+        }
+    }
 }

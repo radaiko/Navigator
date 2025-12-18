@@ -17,4 +17,11 @@
     <PackageReference Include="Radaiko.EasyLogger" Version="0.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="..\..\build\sbom.json">
+      <Link>sbom.json</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

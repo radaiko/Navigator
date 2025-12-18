@@ -23,6 +23,11 @@
             <LogicalName>navigator.icns</LogicalName>
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </BundleResource>
+        <!-- Include the generated SBOM in the app bundle (copied from repo build folder) -->
+        <BundleResource Include="..\..\build\sbom.json">
+            <LogicalName>sbom.json</LogicalName>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </BundleResource>
     </ItemGroup>
 
     <!-- After build, patch the generated Info.plist minimum system version to match the current macOS if SDK sets a higher value
