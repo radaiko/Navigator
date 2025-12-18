@@ -1,3 +1,5 @@
+using System.Text.Json;
+using Navigator.UI.Models;
 using Xunit;
 using Navigator.UI.Utils;
 
@@ -84,5 +86,17 @@ public class JsonTests {
         var level3Obj = level3Array[0].OOr();
         Assert.Equal("value", level3Obj.GetString("key"));
         Assert.Equal("value", j["level1"]["level2"]["level3"][0]["key"].S);
+    }
+
+    [Fact]
+    public void TestSbom() {
+        var sbomJson = "JsonTests/sbom.json".GetTestFileContent();
+        var j = new Json(sbomJson);
+        List<PackageInfo> packages = new();
+        foreach (var component in j["components"].A) {
+            packages.Add(new PackageInfo(component.O!));
+        }
+
+        Assert.EqualWithJson("JsonTests/packageInfo.json", packages);
     }
 }

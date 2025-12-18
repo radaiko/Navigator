@@ -1,0 +1,219 @@
+[
+  {
+    "name": "Avalonia",
+    "version": "11.3.9",
+    "description": "Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.",
+    "license": "MIT",
+    "url": "https://avaloniaui.net/?utm_source=nuget\u0026utm_medium=referral\u0026utm_content=project_homepage_link"
+  },
+  {
+    "name": "Avalonia.Angle.Windows.Natives",
+    "version": "2.1.25547.20250602",
+    "description": "Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.",
+    "license": "",
+    "url": "https://avaloniaui.net/"
+  },
+  {
+    "name": "Avalonia.BuildServices",
+    "version": "11.3.2",
+    "description": "Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.",
+    "license": "MIT",
+    "url": "https://avaloniaui.net/"
+  },
+  {
+    "name": "Avalonia.Controls.ColorPicker",
+    "version": "11.3.9",
+    "description": "Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.",
+    "license": "MIT",
+    "url": "https://avaloniaui.net/?utm_source=nuget\u0026utm_medium=referral\u0026utm_content=project_homepage_link"
+  },
+  {
+    "name": "Avalonia.Controls.DataGrid",
+    "version": "11.3.9",
+    "description": "Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.",
+    "license": "MIT",
+    "url": "https://avaloniaui.net/?utm_source=nuget\u0026utm_medium=referral\u0026utm_content=project_homepage_link"
+  },
+  {
+    "name": "Avalonia.Desktop",
+    "version": "11.3.9",
+    "description": "Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.",
+    "license": "MIT",
+    "url": "https://avaloniaui.net/?utm_source=nuget\u0026utm_medium=referral\u0026utm_content=project_homepage_link"
+  },
+  {
+    "name": "Avalonia.Diagnostics",
+    "version": "11.3.9",
+    "description": "Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.",
+    "license": "MIT",
+    "url": "https://avaloniaui.net/?utm_source=nuget\u0026utm_medium=referral\u0026utm_content=project_homepage_link"
+  },
+  {
+    "name": "Avalonia.Fonts.Inter",
+    "version": "11.3.9",
+    "description": "Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.",
+    "license": "MIT",
+    "url": "https://avaloniaui.net/?utm_source=nuget\u0026utm_medium=referral\u0026utm_content=project_homepage_link"
+  },
+  {
+    "name": "Avalonia.FreeDesktop",
+    "version": "11.3.9",
+    "description": "Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.",
+    "license": "MIT",
+    "url": "https://avaloniaui.net/?utm_source=nuget\u0026utm_medium=referral\u0026utm_content=project_homepage_link"
+  },
+  {
+    "name": "Avalonia.Native",
+    "version": "11.3.9",
+    "description": "Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.",
+    "license": "MIT",
+    "url": "https://avaloniaui.net/?utm_source=nuget\u0026utm_medium=referral\u0026utm_content=project_homepage_link"
+  },
+  {
+    "name": "Avalonia.Remote.Protocol",
+    "version": "11.3.9",
+    "description": "Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.",
+    "license": "MIT",
+    "url": "https://avaloniaui.net/?utm_source=nuget\u0026utm_medium=referral\u0026utm_content=project_homepage_link"
+  },
+  {
+    "name": "Avalonia.Skia",
+    "version": "11.3.9",
+    "description": "Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.",
+    "license": "MIT",
+    "url": "https://avaloniaui.net/?utm_source=nuget\u0026utm_medium=referral\u0026utm_content=project_homepage_link"
+  },
+  {
+    "name": "Avalonia.Themes.Fluent",
+    "version": "11.3.9",
+    "description": "Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.",
+    "license": "MIT",
+    "url": "https://avaloniaui.net/?utm_source=nuget\u0026utm_medium=referral\u0026utm_content=project_homepage_link"
+  },
+  {
+    "name": "Avalonia.Themes.Simple",
+    "version": "11.3.9",
+    "description": "Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.",
+    "license": "MIT",
+    "url": "https://avaloniaui.net/?utm_source=nuget\u0026utm_medium=referral\u0026utm_content=project_homepage_link"
+  },
+  {
+    "name": "Avalonia.Win32",
+    "version": "11.3.9",
+    "description": "Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.",
+    "license": "MIT",
+    "url": "https://avaloniaui.net/?utm_source=nuget\u0026utm_medium=referral\u0026utm_content=project_homepage_link"
+  },
+  {
+    "name": "Avalonia.X11",
+    "version": "11.3.9",
+    "description": "Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.",
+    "license": "MIT",
+    "url": "https://avaloniaui.net/?utm_source=nuget\u0026utm_medium=referral\u0026utm_content=project_homepage_link"
+  },
+  {
+    "name": "CommunityToolkit.Mvvm",
+    "version": "8.2.1",
+    "description": "This package includes a .NET MVVM library with helpers such as:\n      - ObservableObject: a base class for objects implementing the INotifyPropertyChanged interface.\n      - ObservableRecipient: a base class for observable objects with support for the IMessenger service.\n      - ObservableValidator: a base class for objects implementing the INotifyDataErrorInfo interface.\n      - RelayCommand: a simple delegate command implementing the ICommand interface.\n      - AsyncRelayCommand: a delegate command supporting asynchronous operations and cancellation.\n      - WeakReferenceMessenger: a messaging system to exchange messages through different loosely-coupled objects.\n      - StrongReferenceMessenger: a high-performance messaging system that trades weak references for speed.\n      - Ioc: a helper class to configure dependency injection service containers.",
+    "license": "MIT",
+    "url": "https://github.com/CommunityToolkit/dotnet"
+  },
+  {
+    "name": "HarfBuzzSharp",
+    "version": "8.3.1.1",
+    "description": "HarfBuzzSharp is a cross-platform OpenType text shaping engine for .NET platforms.",
+    "license": "MIT",
+    "url": "https://go.microsoft.com/fwlink/?linkid=868515"
+  },
+  {
+    "name": "HarfBuzzSharp.NativeAssets.Linux",
+    "version": "8.3.1.1",
+    "description": "HarfBuzzSharp is a cross-platform OpenType text shaping engine for .NET platforms.",
+    "license": "MIT",
+    "url": "https://go.microsoft.com/fwlink/?linkid=868515"
+  },
+  {
+    "name": "HarfBuzzSharp.NativeAssets.macOS",
+    "version": "8.3.1.1",
+    "description": "HarfBuzzSharp is a cross-platform OpenType text shaping engine for .NET platforms.",
+    "license": "MIT",
+    "url": "https://go.microsoft.com/fwlink/?linkid=868515"
+  },
+  {
+    "name": "HarfBuzzSharp.NativeAssets.WebAssembly",
+    "version": "8.3.1.1",
+    "description": "HarfBuzzSharp is a cross-platform OpenType text shaping engine for .NET platforms.",
+    "license": "MIT",
+    "url": "https://go.microsoft.com/fwlink/?linkid=868515"
+  },
+  {
+    "name": "HarfBuzzSharp.NativeAssets.Win32",
+    "version": "8.3.1.1",
+    "description": "HarfBuzzSharp is a cross-platform OpenType text shaping engine for .NET platforms.",
+    "license": "MIT",
+    "url": "https://go.microsoft.com/fwlink/?linkid=868515"
+  },
+  {
+    "name": "MicroCom.Runtime",
+    "version": "0.11.0",
+    "description": "IDL-based COM interop codegen. Consumes MIDL-like IDL file, generates efficient cross-platform C# interop and C\u002B\u002B header files.",
+    "license": "MIT",
+    "url": "https://github.com/kekekeks/MicroCom"
+  },
+  {
+    "name": "Microsoft.NET.ILLink.Tasks",
+    "version": "10.0.0",
+    "description": "MSBuild tasks for running the IL Linker",
+    "license": "MIT",
+    "url": "https://dot.net/"
+  },
+  {
+    "name": "Radaiko.EasyLogger",
+    "version": "0.0.2",
+    "description": "A simple, lightweight logging library for .NET applications.",
+    "license": "MIT",
+    "url": "https://github.com/radaiko/EasyLogger"
+  },
+  {
+    "name": "SkiaSharp",
+    "version": "2.88.9",
+    "description": "SkiaSharp is a cross-platform 2D graphics API for .NET platforms that can be used across mobile, server and desktop models to render images.",
+    "license": "MIT",
+    "url": "https://go.microsoft.com/fwlink/?linkid=868515"
+  },
+  {
+    "name": "SkiaSharp.NativeAssets.Linux",
+    "version": "2.88.9",
+    "description": "SkiaSharp is a cross-platform 2D graphics API for .NET platforms that can be used across mobile, server and desktop models to render images.",
+    "license": "MIT",
+    "url": "https://go.microsoft.com/fwlink/?linkid=868515"
+  },
+  {
+    "name": "SkiaSharp.NativeAssets.macOS",
+    "version": "2.88.9",
+    "description": "SkiaSharp is a cross-platform 2D graphics API for .NET platforms that can be used across mobile, server and desktop models to render images.",
+    "license": "MIT",
+    "url": "https://go.microsoft.com/fwlink/?linkid=868515"
+  },
+  {
+    "name": "SkiaSharp.NativeAssets.WebAssembly",
+    "version": "2.88.9",
+    "description": "SkiaSharp is a cross-platform 2D graphics API for .NET platforms that can be used across mobile, server and desktop models to render images.",
+    "license": "MIT",
+    "url": "https://go.microsoft.com/fwlink/?linkid=868515"
+  },
+  {
+    "name": "SkiaSharp.NativeAssets.Win32",
+    "version": "2.88.9",
+    "description": "SkiaSharp is a cross-platform 2D graphics API for .NET platforms that can be used across mobile, server and desktop models to render images.",
+    "license": "MIT",
+    "url": "https://go.microsoft.com/fwlink/?linkid=868515"
+  },
+  {
+    "name": "Tmds.DBus.Protocol",
+    "version": "0.21.2",
+    "description": "Tmds.DBus.Protocol Library",
+    "license": "MIT",
+    "url": "https://github.com/tmds/Tmds.DBus.git"
+  }
+]

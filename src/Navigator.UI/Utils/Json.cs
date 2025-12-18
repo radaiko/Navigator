@@ -48,14 +48,14 @@ public sealed class Json {
          public Json? O => V as Json;
 
          /// <summary>Returns the value as an array of <see cref="JsonVal"/> if underlying is an array.</summary>
-         public IList<JsonVal>? A {
+         public IList<JsonVal> A {
              get {
                  if (V is IList<object?> arr) {
                      var list = new List<JsonVal>(arr.Count);
                      foreach (var x in arr) list.Add(new JsonVal(x));
                      return list;
                  }
-                 return null;
+                 return [];
              }
          }
 
